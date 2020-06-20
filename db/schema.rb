@@ -12,6 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2020_06_20_183121) do
 
+  create_table "cohorts", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
