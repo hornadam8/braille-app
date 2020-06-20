@@ -1,4 +1,6 @@
+require 'pry'
 class UsersController < ApplicationController
+    before_action :set_user, only: [:show]
 
     def new
         @user = User.new
@@ -8,16 +10,14 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.valid?
             @user.save
-            redirect_to :user_roles(@user)
+            session[:user_id] = @user.id
+            redirect_to new_user_role_path
         else
             render :new
         end
     end
 
-    def new_role
-    end
-
-    def create_role
+    def show
     end
 
 
@@ -25,6 +25,10 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:name,:email,:password)
+    end
+
+    def set_user
+        @user = User.find_by(id: params[:id])
     end
 
 end

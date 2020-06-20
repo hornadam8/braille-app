@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new,:create]
 
-  resources :users, only: [:new,:create,:show] do
-    resources :roles, only: [:index]
-  end
+  resources :users, only: [:new,:create,:show]
+    
+  resources :user_roles, only: [:new,:create]
+  
+
 end
