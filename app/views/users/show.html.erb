@@ -1,2 +1,6 @@
 <h1><%=@user.name%> </h1><br>
-<p><%= @user.current_role%><p>
+<p><%= @user.current_role%><p><br><br>
+
+<% if @user.current_role == "teacher" %>
+    <%= link_to new_cohort_path%>
+<%end%>

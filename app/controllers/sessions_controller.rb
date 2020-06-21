@@ -5,5 +5,10 @@ class SessionsController < ApplicationController
 
     def create
     end
+
+    def logout
+        session.clear
+        redirect_to "/"
+    end
     
 end
