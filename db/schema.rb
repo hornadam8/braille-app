@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_183121) do
+ActiveRecord::Schema.define(version: 2020_06_21_105637) do
 
   create_table "cohorts", force: :cascade do |t|
     t.string "title"
     t.integer "user_id"
+    t.string "password_digest"
   end
 
   create_table "roles", force: :cascade do |t|

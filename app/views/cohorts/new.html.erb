@@ -1,0 +1,7 @@
+<%= form_for @cohort do |f| %><br>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br><br>
+    <%= f.label "Class Password"%><br>
+    <%= f.password_field :password %><br><br>
+    <%= f.submit "Create Class" %>
+<%end%>

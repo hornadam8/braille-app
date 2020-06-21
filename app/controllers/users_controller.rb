@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     end
 
     def show
+        @cohorts = Cohort.all
     end
 
 

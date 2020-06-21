@@ -1,6 +1,13 @@
 <h1><%=@user.name%> </h1><br>
 <p><%= @user.current_role%><p><br><br>
 
-<% if @user.current_role == "Teacher"%>
+<% if @user.current_role == "Teacher" || @user.current_role = "Student"%>
     <%= link_to "Add a Class", new_cohort_path%>
+<% elsif @user.current_role == "Student" %>
+    <% if @cohorts.present? %> 
+        <h4> Currently available classes</h4>
+        <% @cohorts.each do |cohort|%>
+            <%= link_to cohort.title, cohort_path(cohort) %>
+        <%end%>
+    <%end%>
 <%end%>
