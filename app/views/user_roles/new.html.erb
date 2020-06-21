@@ -1,5 +1,2 @@
 <h1> Add a role </h1>
-<%= form_for @user_role do |f| %>
-    <%= f.collection_select :role_id, Role.all,:id,:name%><br><br>
-    <%= f.submit %>
-<%end%>
+<%= render "form" %>

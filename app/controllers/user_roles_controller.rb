@@ -2,8 +2,7 @@ require 'pry'
 class UserRolesController < ApplicationController
 
     def new
-        @user_role = UserRole.new(user_id: session[:user_id])
-        @roles = Role.all
+        @user_role = UserRole.new
     end
 
     def create
@@ -17,5 +16,12 @@ class UserRolesController < ApplicationController
         else
             render :new
         end
+    end
+
+    def edit
+        @user_role = UserRole.new
+    end
+
+    def update
     end
 end

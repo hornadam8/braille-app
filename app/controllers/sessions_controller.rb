@@ -7,9 +7,8 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by(email: params[:user][:email])
         if  user.valid? && user.authenticate(params[:user][:password])
-            user.save
             session[:user_id] = user.id
-            redirect_to new_user_role_path
+            redirect_to edit_user_role_path
         else
             render :new
         end
