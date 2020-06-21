@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     validates :name, presence: true
     validates :email, uniqueness: true
+    validates_with EmailValidator
 
     has_many :user_roles
     has_many :roles, through: :user_roles
