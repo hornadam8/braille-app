@@ -6,22 +6,14 @@ class UserRolesController < ApplicationController
     end
 
     def create
-        user_role = UserRole.new(user_id: current_user.id, role_id: params[:user_role][:role_id])
+        role = Role.find_by(id: params[:user_role][:role_id])
+        user_role = UserRole.find_or_create_by(user_id: current_user.id, role_id: params[:user_role][:role_id])
         if user_role.valid?
             user_role.save
-            role_name = Role.find_by(params[:user_role][:role_id]).name
-            current_user.update(current_role: role_name)
-            @user = current_user
-            redirect_to user_path(@user)
+            current_user.update(current_role: role.name)
+            redirect_to user_path(current_user)
         else
             render :new
         end
-    end
-
-    def edit
-        @user_role = UserRole.new
-    end
-
-    def update
     end
 end

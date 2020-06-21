@@ -8,9 +8,10 @@ class SessionsController < ApplicationController
         user = User.find_by(email: params[:user][:email])
         if  user.valid? && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
-            redirect_to edit_user_role_path
+            redirect_to new_user_role_path
         else
-            render :new
+            @user = User.new
+            render :"sessions/new"
         end
     end
 

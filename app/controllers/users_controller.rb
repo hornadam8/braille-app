@@ -13,6 +13,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect_to new_user_role_path
         else
+            @user = User.new
             render :new
         end
     end

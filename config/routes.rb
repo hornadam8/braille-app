@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new,:create,:show]
     
-  resources :user_roles, only: [:new,:create,:edit,:update]
+  resources :user_roles, only: [:new,:create]
 
   resources :cohorts, only: [:new,:create,:show,:index,:edit,:update,:destroy]
   
