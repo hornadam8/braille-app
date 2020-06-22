@@ -7,13 +7,17 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
   <body>
-
     <% if logged_in? %>
       <%= link_to "Logout", logout_path %>
     <%end%>
+    
+    <br>
+    <br>
+    <br>
 
     <%= yield %>
   </body>

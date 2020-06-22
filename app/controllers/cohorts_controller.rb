@@ -1,6 +1,7 @@
 require 'pry'
 class CohortsController < ApplicationController
     before_action :set_cohort, only: [:show]
+    before_action :check_user
 
 
     def new
@@ -15,7 +16,6 @@ class CohortsController < ApplicationController
         @cohort.teacher = current_user
         current_user.teacher_cohorts << @cohort
         current_user.save
-        binding.pry
         if @cohort.valid?
             @cohort.save
             redirect_to cohort_path(@cohort)

@@ -10,6 +10,12 @@ class ApplicationController < ActionController::Base
         params.require(:user).permit(:name,:email,:password)
     end
 
+    def check_user
+        if !session[:user_id]
+            redirect_to root_path
+        end
+    end
+
     def set_user
         @user = User.find_by(id: params[:id])
     end

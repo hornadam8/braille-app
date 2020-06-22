@@ -1,6 +1,7 @@
 require 'pry'
 class UsersController < ApplicationController
     before_action :set_user, only: [:show]
+    before_action :check_user
 
     def new
         @user = User.new
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
 
     def show
         @cohorts = Cohort.all
+        binding.pry
     end
 
 
