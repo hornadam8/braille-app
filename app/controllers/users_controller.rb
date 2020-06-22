@@ -20,8 +20,10 @@ class UsersController < ApplicationController
     end
 
     def show
+        if current_user.current_role == "Teacher"
+            @teacher_cohorts = current_user.teacher_cohorts
+        end
         @cohorts = Cohort.all
-        binding.pry
     end
 
 
