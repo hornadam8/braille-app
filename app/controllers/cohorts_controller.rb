@@ -1,5 +1,7 @@
 require 'pry'
 class CohortsController < ApplicationController
+    before_action :set_cohort, only: [:show]
+
 
     def new
         @cohort = Cohort.new
@@ -10,7 +12,10 @@ class CohortsController < ApplicationController
 
     def create
         @cohort = Cohort.new(cohort_params)
-        @cohort.user_id = current_user.id
+        @cohort.teacher = current_user
+        current_user.teacher_cohorts << @cohort
+        current_user.save
+        binding.pry
         if @cohort.valid?
             @cohort.save
             redirect_to cohort_path(@cohort)
@@ -19,9 +24,16 @@ class CohortsController < ApplicationController
         end
     end
 
+    def show
+    end
+
     private
     
     def cohort_params
         params.require(:cohort).permit(:title,:password)
+    end
+
+    def set_cohort
+        @cohort = Cohort.find_by(id: params[:id])
     end
 end
