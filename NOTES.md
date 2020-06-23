@@ -1,3 +1,2 @@
-view cohorts for all 
-UserCohorts join table?
+allow a student to join a cohort from cohort show page
 create assignments within cohort
