@@ -1,6 +1,6 @@
 require 'pry'
 class AssignmentsController < ApplicationController
-
+before_action :set_assignment, only: [:show]
   def new
     @cohort = Cohort.find_by(id: params[:cohort_id])
     @assignment = Assignment.new
@@ -26,6 +26,10 @@ class AssignmentsController < ApplicationController
 
   def assignment_params
     params.require(:assignment).permit(:title)
+  end
+
+  def set_assignment
+    @assignment = Assignment.find_by(id: params[:id])
   end
 
 end
