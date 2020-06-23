@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_105637) do
+ActiveRecord::Schema.define(version: 2020_06_23_085737) do
+
+  create_table "assignments", force: :cascade do |t|
+    t.string "title"
+    t.integer "cohort_id"
+  end
 
   create_table "cohorts", force: :cascade do |t|
     t.string "title"
