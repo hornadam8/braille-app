@@ -1,0 +1,6 @@
+<h2>Here are the currently available Cohorts</h2>
+<br>
+<br>
+<% @cohorts.each do |c| %>
+  <%= link_to "#{c.title} with #{c.teacher.name}", cohort_path(c)%>
+<%end%>

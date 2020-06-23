@@ -28,6 +28,10 @@ class CohortsController < ApplicationController
       current_user
     end
 
+    def index
+      @cohorts = Cohort.all
+    end
+
     private
 
     def cohort_params
