@@ -1,7 +1,8 @@
 require 'pry'
 class UsersController < ApplicationController
     before_action :set_user, only: [:show]
-    before_action :check_user
+    before_action :check_user, only: [:show]
+    layout :resolve_layout
 
     def new
         @user = User.new
@@ -25,6 +26,17 @@ class UsersController < ApplicationController
         end
         @cohorts = Cohort.all
     end
+
+    private
+
+    def resolve_layout
+    case action_name
+    when "new", "create"
+      "home"
+    else
+      "application"
+    end
+  end
 
 
 

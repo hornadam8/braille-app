@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+layout "home"
 
     def new
         @user = User.new
@@ -19,5 +20,5 @@ class SessionsController < ApplicationController
         session.clear
         redirect_to "/"
     end
-    
+
 end
