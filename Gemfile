@@ -26,7 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pundit'
 
 
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 # Use Active Storage variant
