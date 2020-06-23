@@ -14,9 +14,9 @@
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="/">Braille</a>
       <form class="form-inline">
-          <button class="btn btn-outline-primary" type="button">main button</button>
+          <button class="btn btn-outline-primary" type="button"><%= link_to "Log in", new_session_path %></button>
           <div style="padding-left: 10px;">
-            <button class="btn btn-outline-success" type="button"><%= link_to "Logout", logout_path %></button>
+            <button class="btn btn-outline-success" type="button"><%= link_to "Sign up", new_user_path %></button>
           </div>
         </form>
       </nav>
