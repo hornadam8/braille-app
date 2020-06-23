@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   resources :cohorts, only: [:new,:create,:show,:index,:edit,:update,:destroy] do
     resources :assignments, only: [:new,:create,:show,:index,:edit,:update,:destroy]
+    resources :user_cohorts, only: [:new,:create]
   end
-
 
 
 end
