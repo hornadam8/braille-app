@@ -7,10 +7,13 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new,:create]
 
   resources :users, only: [:new,:create,:show]
-    
+
   resources :user_roles, only: [:new,:create]
 
-  resources :cohorts, only: [:new,:create,:show,:index,:edit,:update,:destroy]
-  
+  resources :cohorts, only: [:new,:create,:show,:index,:edit,:update,:destroy] do
+    resources :assignments, only: [:new,:create,:show,:index,:edit,:update,:destroy]
+  end
+
+
 
 end

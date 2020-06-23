@@ -1,1 +1,4 @@
 <h1><%= @cohort.title %></h1>
+<% if @user == @cohort.teacher %>
+  <%= link_to "Add an Asignment", new_cohort_assignment_path(@cohort) %>
+<%end%>

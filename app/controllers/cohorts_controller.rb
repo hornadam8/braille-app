@@ -25,10 +25,11 @@ class CohortsController < ApplicationController
     end
 
     def show
+      current_user
     end
 
     private
-    
+
     def cohort_params
         params.require(:cohort).permit(:title,:password)
     end
