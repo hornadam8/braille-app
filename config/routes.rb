@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   resources :user_roles, only: [:new,:create]
 
   resources :cohorts, only: [:new,:create,:show,:index,:edit,:update,:destroy] do
-    resources :assignments, only: [:new,:create,:show,:index,:edit,:update,:destroy]
     resources :user_cohorts, only: [:new,:create]
+    resources :assignments, only: [:new,:create,:show,:index,:edit,:update,:destroy] do
+      resources :papers, only: [:new,:create,:show,:edit,:update,:destroy]
+    end
   end
 
 

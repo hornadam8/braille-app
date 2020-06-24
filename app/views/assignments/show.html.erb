@@ -1,1 +1,5 @@
 <h2><%= @assignment.title %> for <%= @assignment.cohort.title %></h2>
+<br>
+<% if current_user.current_role == "Student" %>
+  <%= link_to "Submit a paper", new_cohort_assignment_paper_path(@assignment.cohort,@assignment) %>
+<%end%>

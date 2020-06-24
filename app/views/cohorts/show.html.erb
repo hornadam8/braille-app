@@ -1,4 +1,5 @@
 <h1><%= @cohort.title %></h1>
+<h5>with <%= @cohort.teacher.name %></h5>
 <br>
 <% if @user == @cohort.teacher %>
   <%= link_to "Add an Asignment", new_cohort_assignment_path(@cohort) %>
@@ -16,4 +17,5 @@
 <h4> Students </h4>
 <% @cohort.students.each do |s| %>
 <%= s.name %>
+<br>
 <%end%>

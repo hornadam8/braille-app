@@ -2,5 +2,6 @@
 <br>
 <br>
 <% @cohorts.each do |c| %>
-  <%= link_to "#{c.title} with #{c.teacher.name}", cohort_path(c)%>
+  <%= "#{c.title} with #{c.teacher.name}" %>
+  <%= link_to "Join this class", new_cohort_user_cohort_path(c)%>
 <%end%>
