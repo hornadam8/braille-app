@@ -1,5 +1,6 @@
 require 'pry'
 class PapersController < ApplicationController
+before_action :set_paper, only: [:show]
 
   def new
     @paper = Paper.new
@@ -21,6 +22,10 @@ class PapersController < ApplicationController
   end
 
   private
+
+  def set_paper
+    @paper = Paper.find_by(id: params[:id])
+  end
 
   def paper_params
     params.require(:paper).permit(:title,:content)

@@ -3,3 +3,8 @@
 <% if current_user.current_role == "Student" %>
   <%= link_to "Submit a paper", new_cohort_assignment_paper_path(@assignment.cohort,@assignment) %>
 <%end%>
+
+<p>Tests</p>
+<% @assignment.papers.each do |p| %>
+<%= link_to p.title, cohort_assignment_paper_path(@assignment.cohort,@assignment,p) %>
+<%end%>
