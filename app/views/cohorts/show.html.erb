@@ -9,7 +9,7 @@
   <%= link_to a.title, cohort_assignment_path(@cohort,a) %><br>
 <%end%>
 <br>
-<% if @user.current_role = "Student" %>
+<% if @user.current_role == "Student" %>
   <%= link_to "Join this class", new_cohort_user_cohort_path(@cohort) %>
 <%end%>
 <br>

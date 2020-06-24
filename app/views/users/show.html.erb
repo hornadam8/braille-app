@@ -10,7 +10,12 @@
         <%= link_to "#{tc.title}", cohort_path(tc) %>
     <%end%>
 <% elsif @user.current_role == "Student" %>
-    <% if @cohorts.present? %>
+    <% if @student_cohorts.present? %>
+      <h4> Your current classes </h4>
+      <% @student_cohorts.each do |sc| %>
+        <%= link_to sc.title,cohort_path(sc) %>
+      <%end%>
+    <% elsif @cohorts.present? %>
         <h4> Currently available classes</h4>
         <% @cohorts.each do |c|%>
           <%= "#{c.title} with #{c.teacher.name}" %><br>

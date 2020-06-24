@@ -1,14 +1,19 @@
 require 'pry'
 class CohortsController < ApplicationController
-    before_action :set_cohort
+    before_action :set_cohort, only: [:show]
     before_action :check_user
-    before_action :authorize!, only: [:new,:create,:show]
+    #before_action :authorize!, only: [:new,:create,:show]
 
 
     def new
+      @cohort = Cohort.new
+      if !authorize @cohort
+            redirect_to user_path(current_user)
+        end
     end
 
     def create
+        @cohort = Cohort.new(cohort_params)
         @cohort.teacher = current_user
         current_user.teacher_cohorts << @cohort
         current_user.save
@@ -35,16 +40,7 @@ class CohortsController < ApplicationController
     end
 
     def set_cohort
-      case action_name
-      when "show"
         @cohort = Cohort.find_by(id: params[:id])
-      when "new"
-        @cohort = Cohort.new
-      when "create"
-        @cohort = Cohort.new(cohort_params)
-      when "index"
-        @cohorts = Cohort.all
-      end
     end
 
     def authorize!

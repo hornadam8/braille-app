@@ -9,7 +9,9 @@ before_action :set_paper, only: [:show]
   def create
     @paper = Paper.new(paper_params)
     @paper.assignment = Assignment.find(params[:assignment_id])
-    @paper.user = current_user
+    @paper.user_id = current_user.id
+    @paper.author = current_user
+    binding.pry
     if @paper.valid?
       @paper.save
       redirect_to cohort_assignment_path(@paper.assignment.cohort, @paper.assignment)

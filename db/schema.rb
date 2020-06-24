@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_112653) do
     t.integer "assignment_id"
     t.boolean "reviewed?", default: false
     t.integer "reviewer_id"
+    t.integer "author_id"
   end
 
   create_table "roles", force: :cascade do |t|
