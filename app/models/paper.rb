@@ -4,4 +4,11 @@ class Paper < ApplicationRecord
   belongs_to :assignment
   validates :title, presence: true
   validates :content, presence: true
+
+
+
+  def self.completed
+    all.where(:reviewed? => true)
+  end
+
 end
