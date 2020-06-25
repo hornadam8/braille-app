@@ -13,13 +13,13 @@ class CohortPolicy < ApplicationPolicy
     end
 
     def edit?
-        if @user.current_role == "Teacher"
+        if @user.current_role == "Teacher" && @cohort.teacher == @user
           true
         end
     end
 
     def show?
-      if @user == @cohort.teacher || @cohort.students.include?(@user)
+      if (@user.current_role == "Teacher" && @user == @cohort.teacher) || @cohort.students.include?(@user)
         true
       else
         false

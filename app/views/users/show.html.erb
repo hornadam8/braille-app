@@ -2,7 +2,7 @@
 <br>
 
 <% if @user == current_user%>
-  <%= link_to "edit profile",edit_user_path(@user) %>
+  <%= link_to "Edit Profile",edit_user_path(@user) %>
 <%end%>
 <br>
 <br>
@@ -30,6 +30,8 @@
         <% @cohorts.each do |c|%>
           <%= "#{c.title} with #{c.teacher.name}" %><br>
           <%= link_to "Join this class", new_cohort_user_cohort_path(c)%>
+          <br>
+          <br>
         <%end%>
     <%end%>
 <%end%>

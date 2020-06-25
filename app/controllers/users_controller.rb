@@ -1,6 +1,6 @@
 require 'pry'
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show,:edit,:update]
+    before_action :set_user, only: [:show,:edit,:update,:destroy]
     before_action :check_user, only: [:show,:edit]
     layout :resolve_layout
 
@@ -38,6 +38,11 @@ class UsersController < ApplicationController
     def update
       @user.update(name: params[:user][:name])
       redirect_to user_path(@user)
+    end
+
+    def destroy
+      @user.destroy
+      redirect_to logout_path
     end
 
     private
