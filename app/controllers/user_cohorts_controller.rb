@@ -10,7 +10,6 @@ class UserCohortsController < ApplicationController
     set_cohort
     if @cohort.authenticate(params[:user_cohort][:password])
       UserCohort.create(user_id: current_user.id, student_id: current_user.id, cohort_id: @cohort.id)
-      binding.pry
       current_user.student_cohorts << @cohort
       current_user.save
       redirect_to cohort_path(@cohort)

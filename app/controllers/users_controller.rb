@@ -1,7 +1,7 @@
 require 'pry'
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show]
-    before_action :check_user, only: [:show]
+    before_action :set_user, only: [:show,:edit,:update]
+    before_action :check_user, only: [:show,:edit]
     layout :resolve_layout
 
     def new
@@ -27,7 +27,17 @@ class UsersController < ApplicationController
           @student_cohorts = current_user.student_cohorts
         end
         @cohorts = Cohort.all
-        binding.pry
+    end
+
+    def edit
+      if !(@user == current_user)
+        redirect_to logout_path
+      end
+    end
+
+    def update
+      @user.update(name: params[:user][:name])
+      redirect_to user_path(@user)
     end
 
     private

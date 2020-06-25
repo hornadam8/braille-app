@@ -20,5 +20,5 @@ class User < ApplicationRecord
             student_cohorts
         end
     end
-    
+
 end
