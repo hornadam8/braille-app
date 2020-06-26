@@ -26,4 +26,12 @@ class CohortPolicy < ApplicationPolicy
       end
     end
 
+    def index?
+      if @user.current_role == "Student"
+        true
+      else
+        false
+      end
+    end
+
 end

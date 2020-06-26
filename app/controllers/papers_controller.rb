@@ -15,6 +15,7 @@ before_action :set_paper, only: [:show]
       @paper.save
       redirect_to cohort_assignment_path(@paper.assignment.cohort, @paper.assignment)
     else
+      @errors = @paper.errors.messages
       render :new
     end
   end

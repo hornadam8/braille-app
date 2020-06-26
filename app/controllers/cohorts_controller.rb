@@ -21,6 +21,7 @@ class CohortsController < ApplicationController
             @cohort.save
             redirect_to cohort_path(@cohort)
         else
+            @errors = @cohort.errors.messages
             render :new
         end
     end
@@ -30,6 +31,7 @@ class CohortsController < ApplicationController
     end
 
     def index
+      authorize Cohort
       @cohorts = Cohort.all
     end
 

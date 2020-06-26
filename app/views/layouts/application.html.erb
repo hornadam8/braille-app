@@ -20,6 +20,12 @@
           </div>
         </form>
       </nav>
+      <br>
+      <% if @errors %>
+        <% @errors.each do |k,v| %>
+          <%="#{k} #{v.pop}"%>
+        <%end%>
+      <%end%>
 
     <%= yield %>
   </body>

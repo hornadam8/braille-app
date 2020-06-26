@@ -25,6 +25,9 @@ gem 'bcrypt', '~> 3.1.7'
 #Role policies
 gem 'pundit'
 
+gem 'omniauth'
+gem 'omniauth-canvas'
+
 
 gem 'bootstrap',">= 4.3.1"
 gem 'jquery-rails'

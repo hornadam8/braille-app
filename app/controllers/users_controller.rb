@@ -9,24 +9,25 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.new(user_params)
-        if  user.valid?
-                user.save
-            session[:user_id] = user.id
-            redirect_to new_user_role_path
-        else
-            @user = User.new
-            render :new
-        end
+      user = User.new(user_params)
+      if user.valid?
+        user.save
+        session[:user_id] = user.id
+        redirect_to new_user_role_path
+      else
+        @errors = user.errors.messages
+        @user = User.new
+        render :new
+      end
     end
 
     def show
-        if current_user.current_role == "Teacher"
-            @teacher_cohorts = current_user.teacher_cohorts
-        elsif current_user.current_role == "Student"
-          @student_cohorts = current_user.student_cohorts
-        end
-        @cohorts = Cohort.all
+      if current_user.current_role == "Teacher"
+        @teacher_cohorts = current_user.teacher_cohorts
+      elsif current_user.current_role == "Student"
+        @student_cohorts = current_user.student_cohorts
+      end
+      @cohorts = Cohort.all
     end
 
     def edit

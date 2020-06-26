@@ -14,6 +14,7 @@ before_action :set_assignment, only: [:show]
       @cohort = @assignment.cohort
       redirect_to cohort_assignment_path(@cohort,@assignment)
     else
+      @errors = @assignment.errors.messages
       render :new
     end
   end
