@@ -1,0 +1,11 @@
+<center><h2><%= @paper.title %></h2>
+<br>
+<br>
+<p><%= @paper.content %></p>
+<br>
+<br>
+<%= form_for @review, url: cohort_assignment_paper_reviews_path(@paper.assignment.cohort.id,@paper.assignment.id,@paper.id) do |f|%>
+  <%= f.label :content %>
+  <%= f.text_area :content, size: "170x30" %>
+  <%= f.submit%>
+<%end%></center>

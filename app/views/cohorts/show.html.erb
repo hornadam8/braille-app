@@ -2,15 +2,28 @@
 <h5>with <%= @cohort.teacher.name %></h5>
 <br>
 <% if @user == @cohort.teacher %>
-  <%= link_to "Add an Asignment", new_cohort_assignment_path(@cohort) %>
+  <div class="btn btn-primary" style="padding: 0px">
+    <%= link_to "Add an Asignment", new_cohort_assignment_path(@cohort), :class => "btn" %>
+  </div>
 <%end%>
+<br>
+<br>
+<br>
+<h5>Available Assignments:</h5>
+<br>
 <br>
 <% @cohort.assignments.each do |a| %>
-  <%= link_to a.title, cohort_assignment_path(@cohort,a) %><br>
+  <div class="btn btn-primary" style="padding: 0px">
+    <%= link_to a.title, cohort_assignment_path(@cohort,a), :class => "btn" %>
+  </div>
+  <br>
+  <br>
 <%end%>
 <br>
-<% if @user.current_role == "Student" %>
-  <%= link_to "Join this class", new_cohort_user_cohort_path(@cohort) %>
+<% if @user.current_role == "Student" && !@cohort.students.include?(current_user) %>
+  <div class="btn btn-primary" style="padding: 0px">
+    <%= link_to "Join this class", new_cohort_user_cohort_path(@cohort), :class => "btn" %>
+  </div>
 <%end%>
 <br>
 <br>
