@@ -1,9 +1,12 @@
-<h1><%=@user.name%> </h1>
-<br>
+<center><h1><%=@user.name%> </h1>
+
 
 <% if @user == current_user%>
-  <%= link_to "Edit Profile",edit_user_path(@user) %>
+  <div class="btn btn-primary" style="padding: 0px">
+    <%= link_to "Edit Profile",edit_user_path(@user), :class => "btn" %>
+  </div>
 <%end%>
+<br>
 <br>
 <br>
 <h4>Currently logged in as:</h4>
@@ -12,12 +15,16 @@
 <br>
 <br>
 <% if @user.current_role == "Teacher"%>
-    <%= link_to "Add a Class", new_cohort_path%>
+  <div class="btn btn-primary" style="padding: 0px">
+    <%= link_to "Add a Class", new_cohort_path, :class => "btn" %>
+  </div>
     <br>
     <br>
     <h3>Your current classes</h3>
     <% @teacher_cohorts.each do |tc| %>
-        <%= link_to "#{tc.title}", cohort_path(tc) %>
+      <div class="btn btn-primary" style="padding: 0px">
+        <%= link_to "#{tc.title}", cohort_path(tc), :class => "btn" %>
+      </div>
     <%end%>
 <% elsif @user.current_role == "Student" %>
     <% if @student_cohorts.present? %>
@@ -34,4 +41,4 @@
           <br>
         <%end%>
     <%end%>
-<%end%>
+<%end%></center>

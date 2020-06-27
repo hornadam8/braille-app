@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_074635) do
+ActiveRecord::Schema.define(version: 2020_06_26_080034) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2020_06_25_074635) do
     t.integer "user_id"
     t.integer "teacher_id"
     t.string "password_digest"
+  end
+
+  create_table "oauth_states", force: :cascade do |t|
+    t.string "state"
+    t.text "payload"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state"], name: "index_oauth_states_on_state"
   end
 
   create_table "papers", force: :cascade do |t|
