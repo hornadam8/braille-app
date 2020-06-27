@@ -20,7 +20,7 @@
   </div>
     <br>
     <br>
-    <h3>Your current classes</h3>
+    <h3>Your current classes:</h3>
     <% @teacher_cohorts.each do |tc| %>
       <div class="btn btn-primary" style="padding: 0px">
         <%= link_to "#{tc.title}", cohort_path(tc), :class => "btn" %>
@@ -28,15 +28,21 @@
     <%end%>
 <% elsif @user.current_role == "Student" %>
     <% if @student_cohorts.present? %>
-      <h4> Your current classes </h4>
+      <h4> Your current classes: </h4>
       <% @student_cohorts.each do |sc| %>
-        <%= link_to sc.title,cohort_path(sc) %>
+        <div class="btn btn-primary" style="padding: 0px">
+          <%= link_to sc.title,cohort_path(sc), :class => "btn" %>
+        </div>
       <%end%>
     <% elsif @cohorts.present? %>
-        <h4> Currently available classes</h4>
+        <h4> Currently available classes:</h4>
         <% @cohorts.each do |c|%>
-          <%= "#{c.title} with #{c.teacher.name}" %><br>
-          <%= link_to "Join this class", new_cohort_user_cohort_path(c)%>
+          <% if !c.students.include?(current_user)%>
+            <h5><%= "#{c.title} with #{c.teacher.name}" %><br><h5>
+              <div class="btn btn-primary" style="padding: 0px">
+                <%= link_to "Join this class", new_cohort_user_cohort_path(c), :class => "btn" %>
+              </div>
+          <%end%>
           <br>
           <br>
         <%end%>

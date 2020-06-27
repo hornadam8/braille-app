@@ -7,7 +7,9 @@ class User < ApplicationRecord
     has_many :user_roles
     has_many :roles, through: :user_roles
     has_many :teacher_cohorts, class_name: "Cohort"
-    has_many :student_cohorts, class_name: "Cohort"
+    has_many :user_cohorts
+    has_many :student_cohorts, class_name: "Cohort",through: :user_cohorts
+
 
     #def role?(role)
         #roles.any? { |r| r.name.underscore.to_sym == role }
