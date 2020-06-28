@@ -1,12 +1,14 @@
-<%= form_for @paper, url: cohort_assignment_papers_path do |f| %>
-<%= f.label :title %>
-<br>
-<%= f.text_field :title %>
-<br>
-<br>
-<%= f.label :content %>
-<br>
-<%= f.text_area :content, size: "30x10" %>
-<br>
-<%= f.submit %>
-<%end%>
+<center>
+  <%= form_for @paper, url: cohort_assignment_papers_path do |f| %>
+    <%= f.label :title %>
+    <br>
+    <%= f.text_field :title, size: "170x5" %>
+    <br>
+    <br>
+    <%= f.label :content %>
+    <br>
+    <%= f.text_area :content, size: "170x30" %>
+    <br>
+    <%= f.submit %>
+  <%end%>
+</center>

@@ -2,10 +2,20 @@
 <br>
 <br>
 <p><%= @paper.content %></p>
+<br>
+<br>
+  <% if @review.present? %>
+    <h5>Student Review:</h5>
+    <p><%= @review.content %></p>
+  <%end%>
+<br>
+<br>
   <% if @paper.author != current_user && @paper.assignment.cohort.teacher != current_user %>
     <h5>Review this paper</h5>
     <div class="btn btn-primary" style="padding: 0px">
       <%= link_to "Review this Paper", new_cohort_assignment_paper_review_path(@paper.assignment.cohort.id,@paper.assignment.id,@paper.id), :class => "btn" %>
     </div>
+  <% elsif @paper.assignment.cohort.teacher == current_user %>
+    <p>Written by: <%= @paper.author.name %>, Reviewed by: <%=  @reviewer.name %></p>
   <%end%>
 </center>

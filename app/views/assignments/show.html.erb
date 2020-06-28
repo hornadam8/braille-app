@@ -1,22 +1,36 @@
 <h2><%= @assignment.title %> for <%= @assignment.cohort.title %></h2>
 <br>
-<% if current_user.current_role == "Student" && !@assignment.papers.detect{|p| p.author == current_user}%>
-  <div class="btn btn-primary" style="padding: 0px">
-    <%= link_to "Submit a paper", new_cohort_assignment_paper_path(@assignment.cohort,@assignment), :class => "btn" %>
-  </div>
-<%end%>
-<br>
-<% if @edit_ready_paper.present? && !!(@assignment.papers.detect{|p| p.reviewer_id == current_user.id})%>
-  <div class="btn btn-primary" style="padding: 0px">
-    <%= link_to "Edit Paper",edit_cohort_assignment_paper_path(@edit_ready_paper.assignment.cohort,@edit_ready_paper.assignment,@edit_ready_paper), :class => "btn" %>
-  </div>
-<%end%>
-<br>
-<h4>Papers Available for Review:</h4>
-<br>
-
-<% @assignment.papers.each do |p| %>
-  <% if p.author != current_user && p.reviewed? == false && !!(@assignment.papers.detect{|p| p.author == current_user})%>
-    <%= link_to p.title, cohort_assignment_paper_path(@assignment.cohort,@assignment,p) %>
+<% if current_user.current_role == "Student" %>
+  <% if @completed_paper.present? && @reviewed_paper.present?%>
+    <p>You have completed assignment</p>
+  <% elsif @edit_ready_paper.present? && @reviewed_paper.present?%>
+      <div class="btn btn-primary" style="padding: 0px">
+        <%= link_to "Edit Paper",edit_cohort_assignment_paper_path(@edit_ready_paper.assignment.cohort,@edit_ready_paper.assignment,@edit_ready_paper), :class => "btn" %>
+      </div>
+  <% elsif  @authored_paper.present? && @reviewed_paper.nil? %>
+    <h4>Papers Available for Review:</h4>
+    <br>
+    <% @assignment.papers.each do |p| %>
+      <% if p.author != current_user && p.reviewed? == false && @authored_paper.present?%>
+        <div class="btn btn-primary" style="padding: 0px">
+          <%= link_to p.title, cohort_assignment_paper_path(@assignment.cohort,@assignment,p), :class => "btn" %>
+        </div>
+      <%end%>
+    <%end%>
+  <% elsif !@authored_paper.present? %>
+    <div class="btn btn-primary" style="padding: 0px">
+      <%= link_to "Submit a paper", new_cohort_assignment_paper_path(@assignment.cohort,@assignment), :class => "btn" %>
+    </div>
+  <% else  %>
+    <p>Waiting for your review, please check back later.</p>
+  <%end%>
+  <% elsif current_user.current_role == "Teacher" && @assignment.cohort.teacher == current_user %>
+    <h4>Completed Papers:</h4>
+    <% if @completed_papers.present? %>
+      <% @completed_papers.each do |cp| %>
+        <div class="btn btn-primary" style="padding: 0px">
+          <%= link_to cp.title, cohort_assignment_paper_path(@assignment.cohort,@assignment), :class => "btn" %>
+        </div>
+      <%end%>
   <%end%>
 <%end%>

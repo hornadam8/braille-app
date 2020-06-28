@@ -2,7 +2,7 @@ require 'pry'
 class CohortsController < ApplicationController
     before_action :set_cohort, only: [:show]
     before_action :check_user
-    #before_action :authorize!, only: [:new,:create,:show]
+    before_action :authorize!, only: [:show]
 
 
     def new
@@ -46,6 +46,8 @@ class CohortsController < ApplicationController
     end
 
     def authorize!
-      authorize @cohort
+      if !authorize @cohort
+        redirect_to logout_path
+      end
     end
 end

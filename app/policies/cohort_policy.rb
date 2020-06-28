@@ -1,3 +1,4 @@
+require 'pry'
 class CohortPolicy < ApplicationPolicy
     attr_reader :user,:cohort
 
@@ -19,7 +20,8 @@ class CohortPolicy < ApplicationPolicy
     end
 
     def show?
-      if (@user.current_role == "Teacher" && @user == @cohort.teacher) || @cohort.students.include?(@user)
+      if (@user.current_role == "Teacher" && @user == @cohort.teacher) ||
+        @cohort.students.include?(@user) && @user.current_role == "Student"
         true
       else
         false

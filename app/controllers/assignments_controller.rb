@@ -21,6 +21,10 @@ before_action :set_assignment, only: [:show]
 
   def show
     @edit_ready_paper = Paper.edit_ready.find_by(author_id: current_user.id,assignment_id: @assignment.id)
+    @completed_paper = Paper.completed.find_by(author_id: current_user.id,assignment_id: @assignment.id)
+    @completed_papers = Paper.completed.where(assignment_id: @assignment.id)
+    @reviewed_paper = Paper.edit_ready.find_by(reviewer_id: current_user.id)
+    @authored_paper = Paper.find_by(author_id: current_user.id,assignment_id: @assignment.id)
   end
 
 

@@ -21,18 +21,34 @@ before_action :set_paper, only: [:show,:edit,:update]
   end
 
   def show
+    @reviewer = User.find_by(id: @paper.reviewer_id)
+    @review = Review.find_by(paper_id: @paper.id)
   end
 
   def edit
+    authorize_paper
+    @review = Review.find_by(paper_id: @paper.id)
+  end
+
+  def update
+    authorize_paper
+    if @paper.update(paper_params)
+      @paper.update(edited?: true)
+      redirect_to cohort_assignment_path(@paper.assignment.cohort,@paper.assignment)
+    else
+      set_paper
+      @review = Review.find_by(paper_id: @paper.id)
+      render :edit
+    end
+  end
+
+  private
+
+  def authorize_paper
     if !authorize @paper
       redirect_to logout_path
     end
   end
-
-  def update
-  end
-
-  private
 
   def set_paper
     @paper = Paper.find_by(id: params[:id])

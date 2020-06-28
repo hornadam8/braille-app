@@ -8,11 +8,11 @@ class Paper < ApplicationRecord
 
 
   def self.edit_ready
-    all.where(:reviewed? => true)
+    all.where(:reviewed? => true,:edited? => false)
   end
 
   def self.completed
-    all.where(:edited? => true)
+    all.where(:reviewed? => true, :edited? => true)
   end
 
 end

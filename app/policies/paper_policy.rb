@@ -14,4 +14,12 @@ class PaperPolicy < ApplicationPolicy
     end
   end
 
+  def update?
+    if @paper.author == @user && @paper.reviewed? == true
+      true
+    else
+      false
+    end
+  end
+
 end
