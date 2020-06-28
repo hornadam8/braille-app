@@ -1,4 +1,4 @@
-work on front end with bootstrap
+partials for page specific side menus
+policies,policies,policies
+refactor controllers and views
 edit and delete functions
-make reviewed papers available for edit
-paper sharing (per assignment, user authors one paper, reviews another)
