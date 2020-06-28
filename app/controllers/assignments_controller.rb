@@ -20,6 +20,7 @@ before_action :set_assignment, only: [:show]
   end
 
   def show
+    @edit_ready_paper = Paper.edit_ready.find_by(author_id: current_user.id,assignment_id: @assignment.id)
   end
 
 

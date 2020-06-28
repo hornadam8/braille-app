@@ -44,4 +44,4 @@ Assignment.create(title: "Routes and Resources", cohort_id: 4)
 Assignment.create(title: "Authentication", cohort_id: 4)
 
 Paper.create(title: "Intro to Rails paper",content: "Rails looks pretty cool! I've got to read some more documentation so I can use it properly", user_id: 2, author_id: 2,assignment_id: 1)
-Paper.create(title: "Paper for Intro to Rails",content: "Rails looks really powerful. Can't wait to bring some of my ideas to life.", user_id: 3, author_id: 2, assignment_id: 1)
+Paper.create(title: "Paper for Intro to Rails",content: "Rails looks really powerful. Can't wait to bring some of my ideas to life.", user_id: 3, author_id: 3, assignment_id: 1)

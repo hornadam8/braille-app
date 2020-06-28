@@ -7,8 +7,12 @@ class Paper < ApplicationRecord
 
 
 
-  def self.completed
+  def self.edit_ready
     all.where(:reviewed? => true)
+  end
+
+  def self.completed
+    all.where(:edited? => true)
   end
 
 end

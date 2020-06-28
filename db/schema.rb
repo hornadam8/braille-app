@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_184436) do
+ActiveRecord::Schema.define(version: 2020_06_28_073645) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "title"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_184436) do
     t.boolean "reviewed?", default: false
     t.integer "reviewer_id"
     t.integer "author_id"
+    t.boolean "edited?", default: false
   end
 
   create_table "reviews", force: :cascade do |t|

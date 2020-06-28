@@ -1,6 +1,6 @@
 require 'pry'
 class PapersController < ApplicationController
-before_action :set_paper, only: [:show]
+before_action :set_paper, only: [:show,:edit,:update]
 
   def new
     @paper = Paper.new
@@ -21,6 +21,15 @@ before_action :set_paper, only: [:show]
   end
 
   def show
+  end
+
+  def edit
+    if !authorize @paper
+      redirect_to logout_path
+    end
+  end
+
+  def update
   end
 
   private
