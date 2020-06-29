@@ -1,8 +1,14 @@
-<h2><%= @assignment.title %> for <%= @assignment.cohort.title %></h2>
+<center><h2><%= @assignment.title %> for <%= @assignment.cohort.title %></h2>
 <br>
 <% if current_user.current_role == "Student" %>
   <% if @completed_paper.present? && @reviewed_paper.present?%>
     <p>You have completed assignment</p>
+    <br>
+    <p>You can view your paper and review here:</p>
+    <br>
+    <div class="btn btn-primary" style="padding: 0px">
+      <%= link_to @completed_paper.title, cohort_assignment_paper_path(@assignment.cohort,@assignment,@completed_paper), :class => "btn" %>
+    </div>
   <% elsif @edit_ready_paper.present? && @reviewed_paper.present?%>
       <div class="btn btn-primary" style="padding: 0px">
         <%= link_to "Edit Paper",edit_cohort_assignment_paper_path(@edit_ready_paper.assignment.cohort,@edit_ready_paper.assignment,@edit_ready_paper), :class => "btn" %>
@@ -29,8 +35,9 @@
     <% if @completed_papers.present? %>
       <% @completed_papers.each do |cp| %>
         <div class="btn btn-primary" style="padding: 0px">
-          <%= link_to cp.title, cohort_assignment_paper_path(@assignment.cohort,@assignment), :class => "btn" %>
+          <%= link_to cp.title, cohort_assignment_paper_path(@assignment.cohort,@assignment,cp), :class => "btn" %>
         </div>
       <%end%>
   <%end%>
 <%end%>
+</center>

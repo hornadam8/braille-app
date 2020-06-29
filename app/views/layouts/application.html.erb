@@ -21,6 +21,9 @@
         </form>
       </nav>
       <br>
+      <% if flash[:alert]%>
+        <p><%= flash[:alert]%></p>
+      <%end%>
       <% if @errors %>
         <% @errors.each do |k,v| %>
           <%="#{k} #{v.pop}"%>

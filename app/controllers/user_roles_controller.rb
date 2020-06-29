@@ -1,5 +1,6 @@
 require 'pry'
 class UserRolesController < ApplicationController
+  before_action :check_user
 
     def new
         @user_role = UserRole.new

@@ -1,6 +1,7 @@
 require 'pry'
 class PapersController < ApplicationController
 before_action :set_paper, only: [:show,:edit,:update]
+before_action :check_user
 
   def new
     @paper = Paper.new

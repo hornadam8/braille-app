@@ -1,7 +1,9 @@
-<h3>Enter the class password for <%= @cohort.title %></h3>
-<br>
-<%= form_for @user_cohort, url: cohort_user_cohorts_path do |f| %>
-<%= f.label "Class Password" %><br><br>
-<%= f.password_field :password %><br><br>
-<%= f.submit "Join class"%>
-<%end%>
+<center>
+  <h3>Enter the class password for <%= @cohort.title %></h3>
+  <br>
+  <%= form_for @user_cohort, url: cohort_user_cohorts_path do |f| %>
+  <%= f.label "Class Password" %><br><br>
+  <%= f.password_field :password %><br><br>
+  <%= f.submit "Join class"%>
+  <%end%>
+</center>

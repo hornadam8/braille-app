@@ -25,8 +25,11 @@ gem 'bcrypt', '~> 3.1.7'
 #Role policies
 gem 'pundit'
 
+gem 'dotenv-rails'
+
 gem 'omniauth'
 gem 'omniauth-canvas'
+gem 'omniauth-google-oauth2'
 
 
 gem 'bootstrap',">= 4.3.1"
