@@ -1,6 +1,6 @@
 require 'pry'
 class CohortsController < ApplicationController
-    before_action :set_cohort, only: [:show]
+    before_action :set_cohort, only: [:show,:edit,:update]
     before_action :check_user
     before_action :authorize!, only: [:show]
 
@@ -28,6 +28,14 @@ class CohortsController < ApplicationController
 
     def show
       current_user
+    end
+
+    def edit
+    end
+
+    def update
+      @cohort.update(title: params[:cohort][:title])
+      redirect_to cohort_path(@cohort)
     end
 
     def index

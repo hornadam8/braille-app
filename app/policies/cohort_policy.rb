@@ -13,11 +13,25 @@ class CohortPolicy < ApplicationPolicy
         end
     end
 
+    def create?
+        if @user.current_role == "Teacher"
+            true
+        end
+    end
+
     def edit?
         if @user.current_role == "Teacher" && @cohort.teacher == @user
           true
         end
     end
+
+    def update?
+      if @user.current_role == "Teacher" && @cohort.teacher == @user
+        true
+      end
+    end
+
+
 
     def show?
       if (@user.current_role == "Teacher" && @user == @cohort.teacher) ||
