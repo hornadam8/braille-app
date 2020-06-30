@@ -1,6 +1,6 @@
 require 'pry'
 class AssignmentsController < ApplicationController
-before_action :set_assignment, only: [:show,:edit,:update]
+before_action :set_assignment, only: [:show,:edit,:update,:destroy]
 before_action :check_user
   def new
     @cohort = Cohort.find_by(id: params[:cohort_id])
@@ -34,6 +34,11 @@ before_action :check_user
   def update
     @assignment.update(title: params[:assignment][:title])
     redirect_to cohort_assignment_path(@assignment.cohort,@assignment)
+  end
+
+  def destroy
+    @assignment.destroy
+    redirect_to user_path(current_user)
   end
 
 
