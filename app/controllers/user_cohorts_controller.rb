@@ -20,6 +20,14 @@ class UserCohortsController < ApplicationController
     end
   end
 
+  def destroy
+    binding.pry
+    @user_cohort = UserCohort.find_by(id: params[:id])
+    @cohort = Cohort.find_by(id: @user_cohort.cohort_id)
+    @user_cohort.destroy
+    redirect_to cohort_path(@cohort)
+  end
+
 
   private
 

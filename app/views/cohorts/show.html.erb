@@ -12,6 +12,18 @@
   <div class="btn btn-primary" style="padding: 0px">
     <%= button_to "Delete this Cohort", cohort_path(@cohort), method: :delete, :class => "btn" %>
   </div>
+  <br>
+  <br>
+  <h4> Students </h4>
+  <% @cohort.students.each do |s| %>
+  <%= s.name %>
+  <% uc = s.user_cohorts.where(cohort_id: @cohort.id).first %>
+  <div class="btn btn-primary" style="padding: 0px">
+    <%= button_to "Remove this Student", cohort_user_cohort_path(@cohort,uc), method: :delete, :class => "btn" %>
+  </div>
+  <br>
+  <br>
+  <%end%>
 <%end%>
 <br>
 <br>
@@ -31,11 +43,4 @@
   <div class="btn btn-primary" style="padding: 0px">
     <%= link_to "Join this class", new_cohort_user_cohort_path(@cohort), :class => "btn" %>
   </div>
-<%end%>
-<br>
-<br>
-<h4> Students </h4>
-<% @cohort.students.each do |s| %>
-<%= s.name %>
-<br>
 <%end%>
