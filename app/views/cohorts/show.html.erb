@@ -1,3 +1,4 @@
+
 <h1><%= @cohort.title %></h1>
 <h5>with <%= @cohort.teacher.name %></h5>
 <br>
@@ -7,6 +8,9 @@
   </div>
   <div class="btn btn-primary" style="padding: 0px">
     <%= link_to "Edit this Cohort", edit_cohort_path(@cohort), :class => "btn" %>
+  </div>
+  <div class="btn btn-primary" style="padding: 0px">
+    <%= button_to "Delete this Cohort", cohort_path(@cohort), method: :delete, :class => "btn" %>
   </div>
 <%end%>
 <br>

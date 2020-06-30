@@ -1,6 +1,6 @@
 require 'pry'
 class CohortsController < ApplicationController
-    before_action :set_cohort, only: [:show,:edit,:update]
+    before_action :set_cohort, only: [:show,:edit,:update,:destroy]
     before_action :check_user
     before_action :authorize!, only: [:show]
 
@@ -41,6 +41,11 @@ class CohortsController < ApplicationController
     def index
       authorize Cohort
       @cohorts = Cohort.all
+    end
+
+    def destroy
+      @cohort.destroy
+      redirect_to user_path(current_user)
     end
 
     private
