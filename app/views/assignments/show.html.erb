@@ -31,6 +31,11 @@
     <p>Waiting for your review, please check back later.</p>
   <%end%>
   <% elsif current_user.current_role == "Teacher" && @assignment.cohort.teacher == current_user %>
+    <div class="btn btn-primary" style="padding: 0px">
+      <%= link_to "Edit this Assignment", edit_cohort_assignment_path(@assignment.cohort,@assignment.id), :class => "btn" %>
+    </div>
+    <br>
+    <br>
     <h4>Completed Papers:</h4>
     <% if @completed_papers.present? %>
       <% @completed_papers.each do |cp| %>

@@ -1,5 +1,5 @@
 <center>
-<%= form_for @assignment, url: cohort_assignments_path do |f| %>
+<%= form_for @assignment,url: cohort_assignment_path(@assignment.cohort,@assignment) do |f| %>
   <%= f.label :title %><br>
   <%= f.text_field :title %><br><br>
   <%= f.submit %>
