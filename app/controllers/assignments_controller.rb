@@ -1,7 +1,7 @@
 require 'pry'
 class AssignmentsController < ApplicationController
 before_action :set_assignment, only: [:show,:edit,:update,:destroy]
-before_action :authorize!, only: [:show,:edit,:update,:destroy] 
+before_action :authorize!, only: [:show,:edit,:update,:destroy]
 before_action :check_user
   def new
     @cohort = Cohort.find_by(id: params[:cohort_id])
@@ -16,7 +16,7 @@ before_action :check_user
       @cohort = @assignment.cohort
       redirect_to cohort_assignment_path(@cohort,@assignment)
     else
-      @errors = @assignment.errors.messages
+      flash[:alert] = user.errors.messages
       render :new
     end
   end

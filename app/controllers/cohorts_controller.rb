@@ -22,7 +22,7 @@ class CohortsController < ApplicationController
             @cohort.save
             redirect_to cohort_path(@cohort)
         else
-            @errors = @cohort.errors.messages
+            flash[:alert] = @cohort.errors.messages
             render :new
         end
     end

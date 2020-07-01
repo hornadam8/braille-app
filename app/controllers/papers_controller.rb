@@ -16,7 +16,7 @@ before_action :check_user
       @paper.save
       redirect_to cohort_assignment_path(@paper.assignment.cohort, @paper.assignment)
     else
-      @errors = @paper.errors.messages
+      flash[:alert] = @paper.errors.messages
       render :new
     end
   end

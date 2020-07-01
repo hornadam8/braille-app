@@ -16,6 +16,7 @@ before_action :check_user
       @paper.update(reviewed?: true, reviewer_id: current_user.id)
       redirect_to cohort_assignment_path(@paper.assignment.cohort,@paper.assignment)
     else
+      flash[:alert] = @review.errors.messages
       render :new
     end
   end
