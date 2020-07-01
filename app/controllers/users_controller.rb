@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         redirect_to new_user_role_path
       else
-         flash[:alert] = user.errors.messages
+        flash[:alert] = user.errors.messages
         @user = User.new
         render :new
       end

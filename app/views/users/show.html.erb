@@ -36,6 +36,8 @@
       <%end%>
     <% elsif @cohorts.present? %>
         <h4> Currently available classes:</h4>
+        <br>
+        <br>
         <% @cohorts.each do |c|%>
           <% if !c.students.include?(current_user)%>
             <h5><%= "#{c.title} with #{c.teacher.name}" %><br><h5>

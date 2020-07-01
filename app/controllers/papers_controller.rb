@@ -1,6 +1,7 @@
 require 'pry'
 class PapersController < ApplicationController
 before_action :set_paper, only: [:show,:edit,:update]
+before_action :authorize!, only: [:show,:edit,:update]
 before_action :check_user
 
   def new
@@ -45,10 +46,8 @@ before_action :check_user
 
   private
 
-  def authorize_paper
-    if !authorize @paper
-      redirect_to logout_path
-    end
+  def authorize!
+    authorize @paper
   end
 
   def set_paper
