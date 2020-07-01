@@ -19,7 +19,7 @@ layout "home"
 
     def logout
         session.clear
-        redirect_to "/"
+        redirect_to root_path
     end
 
     def googleAuth

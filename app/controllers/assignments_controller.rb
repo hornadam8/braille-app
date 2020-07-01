@@ -1,6 +1,7 @@
 require 'pry'
 class AssignmentsController < ApplicationController
 before_action :set_assignment, only: [:show,:edit,:update,:destroy]
+before_action :authorize!, only: [:show,:edit,:update,:destroy] 
 before_action :check_user
   def new
     @cohort = Cohort.find_by(id: params[:cohort_id])
@@ -43,6 +44,10 @@ before_action :check_user
 
 
   private
+
+  def authorize!
+    authorize @assignment
+  end
 
   def assignment_params
     params.require(:assignment).permit(:title)

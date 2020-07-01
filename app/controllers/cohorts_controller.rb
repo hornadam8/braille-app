@@ -1,8 +1,9 @@
 require 'pry'
 class CohortsController < ApplicationController
     before_action :set_cohort, only: [:show,:edit,:update,:destroy]
+    before_action :authorize!, only: [:show,:edit,:update,:destroy]
     before_action :check_user
-    before_action :authorize!, only: [:show]
+
 
 
     def new
@@ -31,15 +32,16 @@ class CohortsController < ApplicationController
     end
 
     def edit
+      authorize @cohort
     end
 
     def update
+      authorize @cohort
       @cohort.update(title: params[:cohort][:title])
       redirect_to cohort_path(@cohort)
     end
 
     def index
-      authorize Cohort
       @cohorts = Cohort.all
     end
 
@@ -59,8 +61,6 @@ class CohortsController < ApplicationController
     end
 
     def authorize!
-      if !authorize @cohort
-        redirect_to logout_path
-      end
+      authorize @cohort
     end
 end
