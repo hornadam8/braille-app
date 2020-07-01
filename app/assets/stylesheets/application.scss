@@ -15,3 +15,26 @@
 
 
  @import 'bootstrap-custom';
+
+ .home_video
+  {
+   width: 100vw;
+   height: 100vh;
+   autoplay: autoplay;
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   object-fit: cover;
+   top: 0;
+   z-index: -2;
+};
+
+.home-video-wrapper {
+height: 100vh;
+display: flex;
+};
+
+h1.home {
+  color: white;
+  align: center;
+};
