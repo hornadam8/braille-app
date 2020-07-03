@@ -1,5 +1,6 @@
 require 'pry'
 class CohortsController < ApplicationController
+
     before_action :set_cohort, only: [:show,:edit,:update,:destroy]
     before_action :authorize!, only: [:show,:edit,:update,:destroy]
     before_action :check_user
@@ -8,20 +9,18 @@ class CohortsController < ApplicationController
 
     def new
       @cohort = Cohort.new
-      if !authorize @cohort
-        redirect_to user_path(current_user)
-      end
+      authorize @cohort
     end
 
     def create
       @cohort = Cohort.new(cohort_params)
       @cohort.teacher = current_user
       if @cohort.valid?
-          @cohort.save
-          redirect_to cohort_path(@cohort)
+        @cohort.save
+        redirect_to cohort_path(@cohort)
       else
-          error_messages(@cohort)
-          render :new
+        error_messages(@cohort)
+        render :new
       end
     end
 
@@ -30,11 +29,9 @@ class CohortsController < ApplicationController
     end
 
     def edit
-      authorize @cohort
     end
 
     def update
-      authorize @cohort
       if @cohort.update(title: params[:cohort][:title])
         redirect_to cohort_path(@cohort)
       else

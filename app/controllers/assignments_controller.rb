@@ -1,11 +1,14 @@
 require 'pry'
 class AssignmentsController < ApplicationController
-before_action :set_assignment, only: [:show,:edit,:update,:destroy]
-before_action :authorize!, only: [:show,:edit,:update,:destroy]
-before_action :check_user
+
+  before_action :set_assignment, only: [:show,:edit,:update,:destroy]
+  before_action :authorize!, only: [:show,:edit,:update,:destroy]
+  before_action :check_user
+
   def new
     @cohort = Cohort.find_by(id: params[:cohort_id])
     @assignment = Assignment.new
+    authorize @assignment
   end
 
   def create
@@ -16,7 +19,7 @@ before_action :check_user
       @cohort = @assignment.cohort
       redirect_to cohort_assignment_path(@cohort,@assignment)
     else
-      flash[:alert] = @assignment.errors.messages
+      error_messages(@assignment)
       render :new
     end
   end
@@ -33,8 +36,12 @@ before_action :check_user
   end
 
   def update
-    @assignment.update(title: params[:assignment][:title])
-    redirect_to cohort_assignment_path(@assignment.cohort,@assignment)
+    if @assignment.update(title: params[:assignment][:title])
+      redirect_to cohort_assignment_path(@assignment.cohort,@assignment)
+    else
+      error_messages(@assignment)
+      render :edit
+    end
   end
 
   def destroy
