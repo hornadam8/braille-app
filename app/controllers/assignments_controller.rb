@@ -16,7 +16,7 @@ before_action :check_user
       @cohort = @assignment.cohort
       redirect_to cohort_assignment_path(@cohort,@assignment)
     else
-      flash[:alert] = user.errors.messages
+      flash[:alert] = @assignment.errors.messages
       render :new
     end
   end

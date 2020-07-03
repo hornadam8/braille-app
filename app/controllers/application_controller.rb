@@ -22,7 +22,11 @@ class ApplicationController < ActionController::Base
         @user = User.find_by(id: params[:id])
     end
 
-
+    def error_messages(obj)
+      obj.errors.messages.each do |k,v|
+        flash[:alert] = "#{k.to_s} #{v.first.to_s}"
+      end
+    end
 
     def user_not_authorized
         flash[:alert] = "You are not authorized to perform this action."

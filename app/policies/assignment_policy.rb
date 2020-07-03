@@ -47,4 +47,10 @@ class AssignmentPolicy < ApplicationPolicy
       end
     end
 
+    def destroy?
+      if @user.current_role == "Teacher" && @user == @assignment.cohort.teacher
+        true
+      end
+    end
+
 end

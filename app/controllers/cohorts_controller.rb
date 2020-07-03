@@ -9,22 +9,20 @@ class CohortsController < ApplicationController
     def new
       @cohort = Cohort.new
       if !authorize @cohort
-            redirect_to user_path(current_user)
-        end
+        redirect_to user_path(current_user)
+      end
     end
 
     def create
-        @cohort = Cohort.new(cohort_params)
-        @cohort.teacher = current_user
-        current_user.teacher_cohorts << @cohort
-        current_user.save
-        if @cohort.valid?
-            @cohort.save
-            redirect_to cohort_path(@cohort)
-        else
-            flash[:alert] = @cohort.errors.messages
-            render :new
-        end
+      @cohort = Cohort.new(cohort_params)
+      @cohort.teacher = current_user
+      if @cohort.valid?
+          @cohort.save
+          redirect_to cohort_path(@cohort)
+      else
+          error_messages(@cohort)
+          render :new
+      end
     end
 
     def show
@@ -37,8 +35,12 @@ class CohortsController < ApplicationController
 
     def update
       authorize @cohort
-      @cohort.update(title: params[:cohort][:title])
-      redirect_to cohort_path(@cohort)
+      if @cohort.update(title: params[:cohort][:title])
+        redirect_to cohort_path(@cohort)
+      else
+        error_messages(@cohort)
+        render :edit
+      end
     end
 
     def index
@@ -53,11 +55,11 @@ class CohortsController < ApplicationController
     private
 
     def cohort_params
-        params.require(:cohort).permit(:title,:password)
+      params.require(:cohort).permit(:title,:password)
     end
 
     def set_cohort
-        @cohort = Cohort.find_by(id: params[:id])
+      @cohort = Cohort.find_by(id: params[:id])
     end
 
     def authorize!

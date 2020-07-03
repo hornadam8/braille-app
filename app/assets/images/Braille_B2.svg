@@ -1,0 +1,8 @@
+<svg width="30" height="40" xmlns="http://www.w3.org/2000/svg">
+<circle cx="9" cy="9" r="3" fill="black" />
+<circle cx="22" cy="9" r="3" stroke="black" fill="none" />
+<circle cx="9" cy="22" r="3" fill="black" />
+<circle cx="22" cy="22" r="3" stroke="black" fill="none" />
+<circle cx="9" cy="34" r="3" stroke="black" fill="none" />
+<circle cx="22" cy="34" r="3" stroke="black" fill="none" />
+</svg>

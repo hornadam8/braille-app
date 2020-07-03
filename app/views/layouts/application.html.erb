@@ -11,8 +11,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="/">Braille</a>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="/"><%=  image_tag("Braille_B2.svg") %></a>
       <form class="form-inline">
           <button class="btn btn-outline-primary" type="button"><%= link_to "Profile", user_path(current_user) %></button>
             <button class="btn btn-outline-primary" type="button"><%= link_to "Classes", cohorts_path %></button>
@@ -22,13 +22,9 @@
       </nav>
       <br>
       <% if flash[:alert]%>
-        <p><%= flash[:alert]%></p>
+        <center><p><%= flash[:alert]%></p></center>
       <%end%>
-      <% if @errors %>
-        <% @errors.each do |k,v| %>
-          <%="#{k} #{v.pop}"%>
-        <%end%>
-      <%end%>
+
 
     <%= yield %>
   </body>

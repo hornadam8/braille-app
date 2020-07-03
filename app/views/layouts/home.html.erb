@@ -11,17 +11,19 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="/">Braille</a>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="/"><%=  image_tag("Braille_B2.svg") %></a>
       <form class="form-inline">
           <button class="btn btn-outline-primary" type="button"><%= link_to "Log in", new_session_path %></button>
             <button class="btn btn-outline-primary" type="button"><%= link_to "Sign up", new_user_path %></button>
             <button class="btn btn-outline-primary" type="button"><%= link_to "Log In with Google", "/auth/google_oauth2" %></button>
-          </div>
         </form>
       </nav>
-      
 
+      <div class="home-video-wrapper">
+        <%= video_tag("braille-cover.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "home_video") %>
+        <center><h1 class="home"> Welcome to Braille</h1></center>
+      </div>
     <%= yield %>
   </body>
 </html>

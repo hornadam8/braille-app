@@ -8,4 +8,9 @@ class Cohort < ApplicationRecord
     has_many :assignments, dependent: :delete_all
 
     validates :title, presence: true
+
+    after_create do |cohort|
+      cohort.teacher.teacher_cohorts << cohort
+      cohort.teacher.save
+    end
 end

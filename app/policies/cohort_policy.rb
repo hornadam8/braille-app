@@ -31,22 +31,22 @@ class CohortPolicy < ApplicationPolicy
       end
     end
 
-
-
     def show?
       if (@user.current_role == "Teacher" && @user == @cohort.teacher) ||
         @cohort.students.include?(@user) && @user.current_role == "Student"
         true
-      else
-        false
       end
     end
 
     def index?
       if @user.current_role == "Student"
         true
-      else
-        false
+      end
+    end
+
+    def destroy?
+      if @user.current_role == "Teacher" && @user == @cohort.teacher
+        true
       end
     end
 
