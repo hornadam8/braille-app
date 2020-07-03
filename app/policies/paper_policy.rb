@@ -6,6 +6,18 @@ class PaperPolicy < ApplicationPolicy
     @paper = paper
   end
 
+  def new?
+    if @paper.assignment.cohort.students.include?(@user)
+      true
+    end
+  end
+
+  def create?
+    if @paper.assignment.cohort.students.include?(@user)
+      true
+    end
+  end
+
   def show?
     if @paper.assignment.cohort.students.include?(@user) ||
       @paper.assignment.cohort.teacher == @user
@@ -16,16 +28,12 @@ class PaperPolicy < ApplicationPolicy
   def edit?
     if @paper.author == @user && @paper.reviewed? == true
       true
-    else
-      false
     end
   end
 
   def update?
     if @paper.author == @user && @paper.reviewed? == true
       true
-    else
-      false
     end
   end
 

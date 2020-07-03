@@ -1,11 +1,13 @@
 require 'pry'
 class PapersController < ApplicationController
-before_action :set_paper, only: [:show,:edit,:update]
-before_action :authorize!, only: [:show,:edit,:update]
-before_action :check_user
+
+  before_action :set_paper, only: [:show,:edit,:update]
+  before_action :authorize!, only: [:show,:edit,:update]
+  before_action :check_user
 
   def new
-    @paper = Paper.new
+    @paper = Paper.new(assignment_id: params[:assignment_id])
+    authorize @paper
   end
 
   def create
@@ -17,7 +19,7 @@ before_action :check_user
       @paper.save
       redirect_to cohort_assignment_path(@paper.assignment.cohort, @paper.assignment)
     else
-      flash[:alert] = @paper.errors.messages
+      error_messages(@paper)
       render :new
     end
   end
@@ -28,17 +30,14 @@ before_action :check_user
   end
 
   def edit
-    authorize_paper
-    @review = Review.find_by(paper_id: @paper.id)
   end
 
   def update
-    authorize_paper
     if @paper.update(paper_params)
       @paper.update(edited?: true)
       redirect_to cohort_assignment_path(@paper.assignment.cohort,@paper.assignment)
     else
-      set_paper
+      error_messages(@paper)
       @review = Review.find_by(paper_id: @paper.id)
       render :edit
     end
