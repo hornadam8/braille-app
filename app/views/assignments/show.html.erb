@@ -21,7 +21,7 @@
         <%= link_to "Edit your Paper",edit_cohort_assignment_paper_path(@cohort,@assignment,@reviewed_for_paper), :class => "btn" %>
       </div>
 
-  <% elsif  @authored_paper.present? && @reviewed_by_paper.empty? %>
+  <% elsif  @authored_paper.present? && @reviewed_by_paper.nil? %>
 
     <h4>Papers Available for Review:</h4>
 

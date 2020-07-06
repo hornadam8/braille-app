@@ -3,14 +3,17 @@ class ReviewsController < ApplicationController
   before_action :check_user
 
   def new
-    @review = Review.new
     @paper = Paper.find_by(id: params[:paper_id])
+    @review = Review.new(paper_id: @paper.id)
+    authorize @review
+
   end
 
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.paper_id = params[:paper_id]
+    authorize @review
     if @review && @review.valid?
       @review.save
       @paper = Paper.find_by(id: params[:paper_id])
