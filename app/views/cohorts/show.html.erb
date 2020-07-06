@@ -2,7 +2,7 @@
 <h1><%= @cohort.title %></h1><h5>Instructor: <%= @cohort.teacher.name %></h5>
 <br>
 
-<% if @user == @cohort.teacher %>
+<% if @user.teaches_this(@cohort) %>
 
   <div class="btn btn-primary" style="padding: 0px">
     <%= link_to "Add an Asignment", new_cohort_assignment_path(@cohort), :class => "btn" %>

@@ -12,20 +12,27 @@ class User < ApplicationRecord
     has_many :student_cohorts, class_name: "Cohort",through: :user_cohorts
 
 
-    #def role?(role)
-        #roles.any? { |r| r.name.underscore.to_sym == role }
-    #end
-
     def cohorts
-        if current_role == "Teacher"
-            teacher_cohorts
-        elsif current_role == "Student"
-            student_cohorts
-        end
+      if current_role == "Teacher"
+        teacher_cohorts
+      elsif current_role == "Student"
+        student_cohorts
+      end
+    end
+
+    def teaches_this(obj)
+      if obj.class == Cohort && obj.teacher == self && current_role == "Teacher"
+        true
+      elsif obj.class == Assignment && obj.cohort.teacher == self  && current_role == "Teacher"
+        true
+      elsif obj.class == Paper && obj.assignment.cohort.teacher == self && current_role == "Teacher"
+        true
+      else
+        false
+      end
     end
 
     def self.from_omniauth(auth)
-      # Creates a new user only if it doesn't exist
       where(email: auth.info.email).first_or_initialize do |user|
         user.name = auth.info.name
         user.email = auth.info.email
