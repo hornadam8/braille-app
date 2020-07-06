@@ -8,8 +8,20 @@ class Paper < ApplicationRecord
 
 
 
-  def self.edit_ready(assignment)
-    all.where(:assignment_id => assignment.id, :reviewed? => true, :edited? => false)
+  def self.review_ready(assignment,user)
+    if all.where(:assignment_id => assignment.id, :reviewed? => false, :edited? => false).select{|p| p.author != user}.present?
+      all.where(:assignment_id => assignment.id, :reviewed? => false, :edited? => false).select{|p| p.author != user}.shuffle.first
+    else
+      nil
+    end
+  end
+
+  def self.reviewed_by(assignment,user)
+    all.where(:assignment_id => assignment.id, :reviewed? => true, :edited? => false,:reviewer_id => user.id)
+  end
+
+  def self.reviewed_for(assignment,user)
+    all.where(:assignment_id => assignment.id, :reviewed? => true, :edited? => false,:author_id => user.id)
   end
 
   def self.completed(assignment)

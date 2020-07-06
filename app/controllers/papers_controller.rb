@@ -32,6 +32,7 @@ class PapersController < ApplicationController
   end
 
   def edit
+    @review = Review.find_by(paper_id: @paper.id)
   end
 
   def update

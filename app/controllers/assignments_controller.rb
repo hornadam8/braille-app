@@ -59,13 +59,11 @@ class AssignmentsController < ApplicationController
   def set_assignment
     @assignment = Assignment.find_by(id: params[:id])
     @cohort = @assignment.cohort
-    edit_ready_papers =  Paper.edit_ready(@assignment).select{|p| p.author != @user}
-    if edit_ready_papers.present?
-      @edit_ready_paper = edit_ready_papers.shuffle.first
-    end
+    @review_ready_paper = Paper.review_ready(@assignment,@user)
     @completed_paper = Paper.completed(@assignment).find_by(author_id: @user.id)
     @completed_papers = Paper.completed(@assignment)
-    @reviewed_paper = Paper.edit_ready(@assignment).find_by(author_id: @user.id)
+    @reviewed_by_paper = Paper.reviewed_by(@assignment,@user).first
+    @reviewed_for_paper = Paper.reviewed_for(@assignment,@user).first
     @authored_paper = Paper.find_by(author_id: @user.id,assignment_id: @assignment.id)
   end
 
