@@ -7,7 +7,7 @@ class PapersController < ApplicationController
 
 
   def new
-    @paper = Paper.new(assignment_id: params[:assignment_id])
+    @paper = Paper.new(assignment_id: params[:assignment_id],user_id: @user.id)
     authorize @paper
   end
 
@@ -16,6 +16,7 @@ class PapersController < ApplicationController
     @paper.assignment = Assignment.find(params[:assignment_id])
     @paper.user_id = current_user.id
     @paper.author = current_user
+    authorize @paper
     if @paper.valid?
       @paper.save
       redirect_to cohort_assignment_path(@paper.assignment.cohort, @paper.assignment)

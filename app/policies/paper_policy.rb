@@ -7,13 +7,13 @@ class PaperPolicy < ApplicationPolicy
   end
 
   def new?
-    if @paper.assignment.cohort.students.include?(@user)
+    if @paper.assignment.cohort.students.include?(@user) && !@paper.assignment.papers.detect{|p| p.author = @user}
       true
     end
   end
 
   def create?
-    if @paper.assignment.cohort.students.include?(@user)
+    if @paper.assignment.cohort.students.include?(@user) && !@paper.assignment.papers.detect{|p| p.author = @user}
       true
     end
   end
