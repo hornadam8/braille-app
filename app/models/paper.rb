@@ -8,12 +8,12 @@ class Paper < ApplicationRecord
 
 
 
-  def self.edit_ready
-    all.where(:reviewed? => true,:edited? => false)
+  def self.edit_ready(assignment)
+    all.where(:assignment_id => assignment.id, :reviewed? => true, :edited? => false)
   end
 
-  def self.completed
-    all.where(:reviewed? => true, :edited? => true)
+  def self.completed(assignment)
+    all.where(:assignment_id => assignment.id, :reviewed? => true, :edited? => true)
   end
 
 end
