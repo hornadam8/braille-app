@@ -25,7 +25,11 @@ class CohortsController < ApplicationController
     end
 
     def show
-      current_user
+      if current_user == @cohort.teacher
+        @cohort.students.each do |s|
+          @uc = s.user_cohorts.where(cohort_id: @cohort.id).first
+        end
+      end
     end
 
     def edit
