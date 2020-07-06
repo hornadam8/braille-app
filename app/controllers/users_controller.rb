@@ -46,6 +46,10 @@ class UsersController < ApplicationController
       redirect_to logout_path
     end
 
+    def instructors
+      @instructors = User.instructors
+    end
+
     private
 
     def resolve_layout

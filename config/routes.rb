@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get "/logout", to: "sessions#logout"
 
+  get "/users/instructors", to: "users#instructors"
+
   resources :sessions, only: [:new,:create]
 
   resources :users, only: [:new,:create,:show,:edit,:update,:destroy]
