@@ -1,9 +1,10 @@
 require 'pry'
 class CohortsController < ApplicationController
 
+    before_action :check_user
     before_action :set_cohort, only: [:show,:edit,:update,:destroy]
     before_action :authorize!, only: [:show,:edit,:update,:destroy]
-    before_action :check_user
+
 
 
 
@@ -25,11 +26,6 @@ class CohortsController < ApplicationController
     end
 
     def show
-      if current_user == @cohort.teacher
-        @cohort.students.each do |s|
-          @uc = s.user_cohorts.where(cohort_id: @cohort.id).first
-        end
-      end
     end
 
     def edit
@@ -61,6 +57,11 @@ class CohortsController < ApplicationController
 
     def set_cohort
       @cohort = Cohort.find_by(id: params[:id])
+      if @user == @cohort.teacher
+        @cohort.students.each do |s|
+          @uc = s.user_cohorts.where(cohort_id: @cohort.id).first
+        end
+      end
     end
 
     def authorize!

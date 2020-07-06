@@ -13,9 +13,11 @@ class ApplicationController < ActionController::Base
     end
 
     def check_user
-        if !session[:user_id]
-            redirect_to root_path
-        end
+      if !session[:user_id]
+        redirect_to root_path
+      else
+        @user = current_user
+      end
     end
 
     def set_user
