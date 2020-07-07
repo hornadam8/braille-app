@@ -21,13 +21,17 @@
         <%= link_to "Edit your Paper",edit_cohort_assignment_paper_path(@cohort,@assignment,@reviewed_for_paper), :class => "btn" %>
       </div>
 
-  <% elsif  @authored_paper.present? && @reviewed_by_paper.nil? %>
+  <% elsif  @authored_paper.present? && @reviewed_by_paper.nil? && @review_ready_paper.present? %>
 
     <h4>Papers Available for Review:</h4>
 
     <div class="btn btn-primary" style="padding: 0px">
       <%= link_to @review_ready_paper.title, cohort_assignment_paper_path(@cohort,@assignment,@review_ready_paper), :class => "btn" %>
     </div>
+
+  <% elsif  @authored_paper.present? && @reviewed_by_paper.nil? && @review_ready_paper.nil? %>
+
+    <p>Waiting for an available paper to review, please check back later.</p>
 
   <% elsif @authored_paper.nil? %>
 
