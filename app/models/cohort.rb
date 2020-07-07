@@ -6,6 +6,7 @@ class Cohort < ApplicationRecord
     has_many :students, class_name: "User", through: :user_cohorts
 
     has_many :assignments, dependent: :delete_all
+    has_many :papers, through: :assignments
 
     validates :title, presence: true
 

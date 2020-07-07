@@ -1,7 +1,8 @@
 require 'pry'
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show,:edit,:update,:destroy]
+
     before_action :check_user, only: [:show,:edit]
+    before_action :set_user, only: [:show,:edit,:update,:destroy]
     layout :resolve_layout
 
     def new
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
     end
 
     def instructors
-      @instructors = User.instructors
+      @instructors = User.instructor
     end
 
     private

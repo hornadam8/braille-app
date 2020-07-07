@@ -23,6 +23,7 @@
 
   <% @cohort.students.each do |s| %>
   <%= s.name %>
+  <br>
   <div class="btn btn-primary" style="padding: 0px">
     <%= button_to "Remove this Student", cohort_user_cohort_path(@cohort,@uc), method: :delete, :class => "btn" %>
   </div>
