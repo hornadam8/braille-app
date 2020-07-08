@@ -10,11 +10,11 @@ class UsersController < ApplicationController
     end
 
     def create
-      user = User.new(user_params)
-      if user.valid?
-        user.save
-        session[:user_id] = user.id
-        redirect_to new_user_role_path
+      @user = User.new(user_params)
+      if @user.valid?
+        @user.save
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
       else
         flash[:alert] = user.errors.messages
         @user = User.new
@@ -52,6 +52,10 @@ class UsersController < ApplicationController
     end
 
     private
+
+    def user_params
+      params.require(:user).permit(:name,:email,:password,:current_role)
+    end
 
     def resolve_layout
     case action_name

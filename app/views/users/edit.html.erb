@@ -1,5 +1,9 @@
+<center>
 <%= form_for @user do |f| %>
   <%= f.label :name %><br>
   <%= f.text_field :name %><br><br>
+  <%= f.label :current_role %><br>
+  <%= f.collection_select :current_role, Role.all,:name,:name%><br><br>
   <%= f.submit "Apply Changes" %>
 <%end%>
+</center>
