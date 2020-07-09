@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Role.create(name: "Teacher")
+Role.create(name: "Instructor")
 Role.create(name: "Student")
 
 User.create(name: "Adam Horn", email: "hornadam8@gmail.com", password: "password", role_id: 1)
@@ -13,10 +13,10 @@ User.create(name: "Michael Cera", email: "bigmike@gmail.com", password: "passwor
 User.create(name: "John Smith",email: "jsmith@gmail.com", password: "password", role_id: 2)
 User.create(name: "Zep", email: "zep@gmail.com", password: "password", role_id: 2)
 
-Cohort.create(title: "Rails Comp 101", password: "password", user_id: 1, teacher_id: 1)
-Cohort.create(title: "Rails Comp 202", password: "password", user_id: 1, teacher_id: 1)
-Cohort.create(title: "Rails Comp 303", password: "password", user_id: 1, teacher_id: 1)
-Cohort.create(title: "Rails Comp 404", password: "password", user_id: 1, teacher_id: 1)
+Cohort.create(title: "Rails Comp 101", password: "password", user_id: 1, instructor_id: 1)
+Cohort.create(title: "Rails Comp 202", password: "password", user_id: 1, instructor_id: 1)
+Cohort.create(title: "Rails Comp 303", password: "password", user_id: 1, instructor_id: 1)
+Cohort.create(title: "Rails Comp 404", password: "password", user_id: 1, instructor_id: 1)
 
 UserCohort.create(cohort_id: 1,user_id: 2, student_id: 2, student_cohort_id: 1)
 UserCohort.create(cohort_id: 1,user_id: 3, student_id: 3, student_cohort_id: 1)

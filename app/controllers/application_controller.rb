@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
         params.require(:user).permit(:name,:email,:password)
     end
 
-    def check_user
+    def check_and_set_current_user
       if !session[:user_id]
         redirect_to root_path
       else
@@ -32,6 +32,6 @@ class ApplicationController < ActionController::Base
 
     def user_not_authorized
         flash[:alert] = "You are not authorized to perform this action."
-        redirect_to(request.referrer || user_path(current_user))
+        redirect_to(request.referrer || user_path(@user))
     end
 end

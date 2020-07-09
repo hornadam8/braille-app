@@ -1,7 +1,7 @@
 require 'pry'
 class PapersController < ApplicationController
 
-  before_action :check_user
+  before_action :check_and_set_current_user
   before_action :set_paper, only: [:show,:edit,:update]
   before_action :authorize!, only: [:show,:edit,:update]
 

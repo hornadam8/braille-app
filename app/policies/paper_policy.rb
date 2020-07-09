@@ -20,7 +20,7 @@ class PaperPolicy < ApplicationPolicy
 
   def show?
     if @paper.assignment.cohort.students.include?(@user) ||
-      @paper.assignment.cohort.teacher == @user
+      @paper.assignment.cohort.instructor == @user
       true
     end
   end

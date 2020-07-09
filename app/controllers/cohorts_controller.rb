@@ -1,7 +1,7 @@
 require 'pry'
 class CohortsController < ApplicationController
 
-    before_action :check_user
+    before_action :check_and_set_current_user
     before_action :set_cohort, only: [:show,:edit,:update,:destroy]
     before_action :authorize!, only: [:show,:edit,:update,:destroy]
 
@@ -15,7 +15,7 @@ class CohortsController < ApplicationController
 
     def create
       @cohort = Cohort.new(cohort_params)
-      @cohort.teacher = current_user
+      @cohort.instructor = current_user
       if @cohort.valid?
         @cohort.save
         redirect_to cohort_path(@cohort)
@@ -57,7 +57,7 @@ class CohortsController < ApplicationController
 
     def set_cohort
       @cohort = Cohort.find_by(id: params[:id])
-      if @user == @cohort.teacher
+      if @user == @cohort.instructor
         @cohort.students.each do |s|
           @uc = s.user_cohorts.where(cohort_id: @cohort.id).first
         end

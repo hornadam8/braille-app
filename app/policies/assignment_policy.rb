@@ -7,31 +7,31 @@ class AssignmentPolicy < ApplicationPolicy
     end
 
     def new?
-        if @user.role.name == "Teacher"
+        if @user.role.name == "Instructor"
             true
         end
     end
 
     def create?
-        if @user.role.name == "Teacher"
+        if @user.role.name == "Instructor"
             true
         end
     end
 
     def edit?
-        if @user.role.name == "Teacher" && @assignment.cohort.teacher == @user
+        if @user.role.name == "Instructor" && @assignment.cohort.instructor == @user
           true
         end
     end
 
     def update?
-      if @user.role.name == "Teacher" && @assignment.cohort.teacher == @user
+      if @user.role.name == "Instructor" && @assignment.cohort.instructor == @user
         true
       end
     end
 
     def show?
-      if (@user.role.name == "Teacher" && @user == @assignment.cohort.teacher) ||
+      if (@user.role.name == "Instructor" && @user == @assignment.cohort.instructor) ||
         @assignment.cohort.students.include?(@user) && @user.role.name == "Student"
         true
       else
@@ -48,7 +48,7 @@ class AssignmentPolicy < ApplicationPolicy
     end
 
     def destroy?
-      if @user.role.name == "Teacher" && @user == @assignment.cohort.teacher
+      if @user.role.name == "Instructor" && @user == @assignment.cohort.instructor
         true
       end
     end

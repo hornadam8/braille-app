@@ -8,31 +8,31 @@ class CohortPolicy < ApplicationPolicy
     end
 
     def new?
-        if @user.role.name == "Teacher"
+        if @user.role.name == "Instructor"
             true
         end
     end
 
     def create?
-        if @user.role.name == "Teacher"
+        if @user.role.name == "Instructor"
             true
         end
     end
 
     def edit?
-        if @user.role.name == "Teacher" && @cohort.teacher == @user
+        if @user.role.name == "Instructor" && @cohort.instructor == @user
           true
         end
     end
 
     def update?
-      if @user.role.name == "Teacher" && @cohort.teacher == @user
+      if @user.role.name == "Instructor" && @cohort.instructor == @user
         true
       end
     end
 
     def show?
-      if (@user.role.name == "Teacher" && @user == @cohort.teacher) ||
+      if (@user.role.name == "Instructor" && @user == @cohort.instructor) ||
         @cohort.students.include?(@user) && @user.role.name == "Student"
         true
       end
@@ -45,7 +45,7 @@ class CohortPolicy < ApplicationPolicy
     end
 
     def destroy?
-      if @user.role.name == "Teacher" && @user == @cohort.teacher
+      if @user.role.name == "Instructor" && @user == @cohort.instructor
         true
       end
     end

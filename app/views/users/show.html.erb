@@ -17,10 +17,10 @@
 <p><%= @user.role.name%><p>
 <br>
 <br>
-<% if @user.role.name == "Teacher"%>
+<% if @user.role.name == "Instructor"%>
 
     <h3>Your current classes:</h3>
-    <% @teacher_cohorts.each do |tc| %>
+    <% @instructor_cohorts.each do |tc| %>
       <div class="btn btn-primary" style="padding: 0px">
         <%= link_to "#{tc.title}", cohort_path(tc), :class => "btn" %>
       </div>
@@ -53,7 +53,7 @@
 
           <% if !c.students.include?(current_user)%>
 
-            <h5><%= "#{c.title} with #{c.teacher.name}" %><br><h5>
+            <h5><%= "#{c.title} with #{c.instructor.name}" %><br><h5>
 
               <div class="btn btn-primary" style="padding: 0px">
                 <%= link_to "Join this class", new_cohort_user_cohort_path(c), :class => "btn" %>

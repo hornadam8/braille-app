@@ -1,7 +1,7 @@
 require 'pry'
 class AssignmentsController < ApplicationController
 
-  before_action :check_user
+  before_action :check_and_set_current_user
   before_action :set_assignment, only: [:show,:edit,:update,:destroy]
   before_action :authorize!, only: [:show,:edit,:update,:destroy]
 

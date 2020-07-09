@@ -1,7 +1,7 @@
 require 'pry'
 class UsersController < ApplicationController
 
-    before_action :check_user, only: [:show,:edit]
+    before_action :check_and_set_current_user, only: [:show,:edit]
     before_action :set_user, only: [:show,:edit,:update,:destroy]
     layout :resolve_layout
 
@@ -23,8 +23,8 @@ class UsersController < ApplicationController
     end
 
     def show
-      if @user.role.name == "Teacher"
-        @teacher_cohorts = @user.teacher_cohorts
+      if @user.role.name == "Instructor"
+        @instructor_cohorts = @user.instructor_cohorts
       elsif @user.role.name == "Student"
         @student_cohorts = @user.student_cohorts
       end
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-      params.require(:user).permit(:name,:email,:password,:role.name)
+      params.require(:user).permit(:name,:email,:password,:role_id)
     end
 
     def resolve_layout

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-  before_action :check_user
+  before_action :check_and_set_current_user
 
   def new
     @paper = Paper.find_by(id: params[:paper_id])

@@ -1,6 +1,6 @@
 require 'pry'
 class UserCohortsController < ApplicationController
-  before_action :check_user
+  before_action :check_and_set_current_user
 
   def new
     set_cohort
@@ -9,11 +9,11 @@ class UserCohortsController < ApplicationController
 
   def create
     set_cohort
-    @user_cohort = UserCohort.new(user_id: current_user.id, student_id: current_user.id, cohort_id: @cohort.id, student_cohort_id: @cohort.id)
+    @user_cohort = UserCohort.new(user_id: @user.id, student_id: @user.id, cohort_id: @cohort.id, student_cohort_id: @cohort.id)
     authorize @user_cohort
     if !!@cohort.authenticate(params[:user_cohort][:password])
-      UserCohort.create(user_id: current_user.id, student_id: current_user.id, cohort_id: @cohort.id, student_cohort_id: @cohort.id)
-      current_user.save
+      UserCohort.create(user_id: @user.id, student_id: @user.id, cohort_id: @cohort.id, student_cohort_id: @cohort.id)
+      @user.save
       redirect_to cohort_path(@cohort)
     else
       render :new
@@ -21,7 +21,6 @@ class UserCohortsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @user_cohort = UserCohort.find_by(id: params[:id])
     @cohort = Cohort.find_by(id: @user_cohort.cohort_id)
     @user_cohort.destroy

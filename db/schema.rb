@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_074933) do
   create_table "cohorts", force: :cascade do |t|
     t.string "title"
     t.integer "user_id"
-    t.integer "teacher_id"
+    t.integer "instructor_id"
     t.string "password_digest"
   end
 

@@ -1,5 +1,5 @@
 <center>
-<h1><%= @cohort.title %></h1><h5>Instructor: <%= @cohort.teacher.name %></h5>
+<h1><%= @cohort.title %></h1><h5>Instructor: <%= @cohort.instructor.name %></h5>
 <br>
 
 <% if @user.teaches_this(@cohort) %>
