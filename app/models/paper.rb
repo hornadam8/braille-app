@@ -5,7 +5,7 @@ class Paper < ApplicationRecord
   belongs_to :assignment
   validates :title, presence: true
   validates :content, presence: true
-
+  has_one_attached :document
 
 
   def self.review_ready(assignment,user)

@@ -10,6 +10,7 @@ class User < ApplicationRecord
     has_many :instructor_cohorts, class_name: "Cohort"
     has_many :user_cohorts, dependent: :delete_all
     has_many :student_cohorts, class_name: "Cohort",through: :user_cohorts
+    
 
 
     def cohorts
