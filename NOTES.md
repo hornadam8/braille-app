@@ -1,3 +1,1 @@
-review policy
-walkthrough
-blog post
+enable word file upload
