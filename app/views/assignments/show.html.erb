@@ -3,7 +3,7 @@
 
 <br>
 
-<% if @user.current_role == "Student" %>
+<% if @user.role.name == "Student" %>
 
   <% if @completed_paper.present? && @reviewed_by_paper.present?%>
 

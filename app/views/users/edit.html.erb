@@ -3,7 +3,7 @@
   <%= f.label :name %><br>
   <%= f.text_field :name %><br><br>
   <%= f.label :current_role %><br>
-  <%= f.collection_select :current_role, Role.all,:name,:name%><br><br>
+  <%= f.collection_select :role_id, Role.all,:id,:name%><br><br>
   <%= f.submit "Apply Changes" %>
 <%end%>
 </center>

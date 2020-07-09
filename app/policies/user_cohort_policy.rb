@@ -7,7 +7,7 @@ class UserCohortPolicy < ApplicationPolicy
 
 
   def create?
-    if @user.current_role == "Student" &&
+    if @user.role.name == "Student" &&
       !@user.student_cohorts.include?(Cohort.find(@user_cohort.cohort_id)) &&
       Cohort.find(@user_cohort.cohort_id).teacher != @user
       true

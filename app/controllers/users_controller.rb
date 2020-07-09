@@ -23,16 +23,16 @@ class UsersController < ApplicationController
     end
 
     def show
-      if current_user.current_role == "Teacher"
-        @teacher_cohorts = current_user.teacher_cohorts
-      elsif current_user.current_role == "Student"
-        @student_cohorts = current_user.student_cohorts
+      if @user.role.name == "Teacher"
+        @teacher_cohorts = @user.teacher_cohorts
+      elsif @user.role.name == "Student"
+        @student_cohorts = @user.student_cohorts
       end
       @cohorts = Cohort.all
     end
 
     def edit
-      if !(@user == current_user)
+      if !(@user == @user)
         redirect_to logout_path
       end
     end
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-      params.require(:user).permit(:name,:email,:password,:current_role)
+      params.require(:user).permit(:name,:email,:password,:role.name)
     end
 
     def resolve_layout

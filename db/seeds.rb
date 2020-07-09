@@ -8,10 +8,10 @@
 Role.create(name: "Teacher")
 Role.create(name: "Student")
 
-User.create(name: "Adam Horn", email: "hornadam8@gmail.com", password: "password")
-User.create(name: "Michael Cera", email: "bigmike@gmail.com", password: "password")
-User.create(name: "John Smith",email: "jsmith@gmail.com", password: "password")
-User.create(name: "Zep", email: "zep@gmail.com", password: "password")
+User.create(name: "Adam Horn", email: "hornadam8@gmail.com", password: "password", role_id: 1)
+User.create(name: "Michael Cera", email: "bigmike@gmail.com", password: "password", role_id: 2)
+User.create(name: "John Smith",email: "jsmith@gmail.com", password: "password", role_id: 2)
+User.create(name: "Zep", email: "zep@gmail.com", password: "password", role_id: 2)
 
 Cohort.create(title: "Rails Comp 101", password: "password", user_id: 1, teacher_id: 1)
 Cohort.create(title: "Rails Comp 202", password: "password", user_id: 1, teacher_id: 1)

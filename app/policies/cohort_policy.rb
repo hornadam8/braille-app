@@ -8,44 +8,44 @@ class CohortPolicy < ApplicationPolicy
     end
 
     def new?
-        if @user.current_role == "Teacher"
+        if @user.role.name == "Teacher"
             true
         end
     end
 
     def create?
-        if @user.current_role == "Teacher"
+        if @user.role.name == "Teacher"
             true
         end
     end
 
     def edit?
-        if @user.current_role == "Teacher" && @cohort.teacher == @user
+        if @user.role.name == "Teacher" && @cohort.teacher == @user
           true
         end
     end
 
     def update?
-      if @user.current_role == "Teacher" && @cohort.teacher == @user
+      if @user.role.name == "Teacher" && @cohort.teacher == @user
         true
       end
     end
 
     def show?
-      if (@user.current_role == "Teacher" && @user == @cohort.teacher) ||
-        @cohort.students.include?(@user) && @user.current_role == "Student"
+      if (@user.role.name == "Teacher" && @user == @cohort.teacher) ||
+        @cohort.students.include?(@user) && @user.role.name == "Student"
         true
       end
     end
 
     def index?
-      if @user.current_role == "Student"
+      if @user.role.name == "Student"
         true
       end
     end
 
     def destroy?
-      if @user.current_role == "Teacher" && @user == @cohort.teacher
+      if @user.role.name == "Teacher" && @user == @cohort.teacher
         true
       end
     end

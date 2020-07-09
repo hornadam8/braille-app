@@ -13,19 +13,19 @@ class User < ApplicationRecord
 
 
     def cohorts
-      if current_role == "Teacher"
+      if role.name == "Teacher"
         teacher_cohorts
-      elsif current_role == "Student"
+      elsif role.name == "Student"
         student_cohorts
       end
     end
 
     def teaches_this(obj)
-      if obj.class == Cohort && obj.teacher == self && current_role == "Teacher"
+      if obj.class == Cohort && obj.teacher == self && role.name == "Teacher"
         true
-      elsif obj.class == Assignment && obj.cohort.teacher == self  && current_role == "Teacher"
+      elsif obj.class == Assignment && obj.cohort.teacher == self  && role.name == "Teacher"
         true
-      elsif obj.class == Paper && obj.assignment.cohort.teacher == self && current_role == "Teacher"
+      elsif obj.class == Paper && obj.assignment.cohort.teacher == self && role.name == "Teacher"
         true
       else
         false
@@ -33,7 +33,7 @@ class User < ApplicationRecord
     end
 
     def self.instructors
-      all.where(:current_role => "Teacher")
+      all.where(:role_id => 1)
     end
 
 

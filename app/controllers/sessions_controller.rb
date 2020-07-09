@@ -35,8 +35,8 @@ layout "home"
       refresh_token = access_token.credentials.refresh_token
       @user.google_refresh_token = refresh_token if refresh_token.present?
       @user.save
-      if @user.current_role.nil?
-        @user.current_role == "Student"
+      if @user.role.name.nil?
+        @user.role.name == "Student"
       end
       redirect_to user_path(@user)
     end

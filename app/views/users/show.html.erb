@@ -7,17 +7,17 @@
   <div class="btn btn-primary" style="padding: 0px">
     <%= link_to "Edit Profile",edit_user_path(@user), :class => "btn" %>
   </div>
-  
+
 <%end%>
 <br>
 <br>
 <br>
 <h4>Currently logged in as:</h4>
 <br>
-<p><%= @user.current_role%><p>
+<p><%= @user.role.name%><p>
 <br>
 <br>
-<% if @user.current_role == "Teacher"%>
+<% if @user.role.name == "Teacher"%>
 
     <h3>Your current classes:</h3>
     <% @teacher_cohorts.each do |tc| %>
@@ -31,7 +31,7 @@
       <%= link_to "Add a Class", new_cohort_path, :class => "btn" %>
     </div>
 
-<% elsif @user.current_role == "Student" %>
+<% elsif @user.role.name == "Student" %>
 
     <% if @student_cohorts.present? %>
 

@@ -66,9 +66,9 @@ ActiveRecord::Schema.define(version: 2020_06_29_074933) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.integer "role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "current_role"
     t.string "google_token"
     t.string "google_refresh_token"
   end

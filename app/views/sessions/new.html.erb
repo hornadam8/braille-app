@@ -4,7 +4,7 @@
     <%= f.email_field :email %><br><br>
     <%= f.label :password %><br>
     <%= f.password_field :password%><br><br>
-    <%= f.label :current_role %><br>
-    <%= f.collection_select :current_role, Role.all,:name,:name%><br><br>
+    <%= f.label :role %><br>
+    <%= f.collection_select :role_id, Role.all,:id,:name%><br><br>
     <%= f.submit "Log In"%>
 <%end%></center>

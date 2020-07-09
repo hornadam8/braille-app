@@ -2,7 +2,7 @@
 <br>
 <br>
 <% @cohorts.each do |c| %>
-  <% if !current_user.cohorts.include?(c) %>
+  <% if !@user.cohorts.include?(c) %>
     <h5><%= "#{c.title} with #{c.teacher.name}" %></h5>
     <br>
     <div class="btn btn-primary" style="padding: 0px">
