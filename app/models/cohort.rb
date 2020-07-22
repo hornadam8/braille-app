@@ -21,10 +21,10 @@ class Cohort < ApplicationRecord
       if @cohort
         self.where(title: @cohort.title)
       else
-        @cohort = self.all
+        @cohort = nil
       end
     else
-      @cohort = self.all
+      @cohort = nil
     end
     @cohort
   end
