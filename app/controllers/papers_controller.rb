@@ -4,6 +4,7 @@ class PapersController < ApplicationController
   before_action :check_and_set_current_user
   before_action :set_paper, only: [:show,:edit,:update]
   before_action :authorize!, only: [:show,:edit,:update]
+  before_action :set_review, only: [:edit,:show,:update]
 
 
   def new
@@ -28,11 +29,9 @@ class PapersController < ApplicationController
 
   def show
     @reviewer = User.find_by(id: @paper.reviewer_id)
-    @review = Review.find_by(paper_id: @paper.id)
   end
 
   def edit
-    @review = Review.find_by(paper_id: @paper.id)
   end
 
   def update
@@ -41,12 +40,16 @@ class PapersController < ApplicationController
       redirect_to cohort_assignment_path(@paper.assignment.cohort,@paper.assignment)
     else
       error_messages(@paper)
-      @review = Review.find_by(paper_id: @paper.id)
       render :edit
     end
   end
 
   private
+
+  def set_review
+    @review = Review.find_by(paper_id: @paper.id)
+  end
+
 
   def authorize!
     authorize @paper

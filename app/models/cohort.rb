@@ -14,4 +14,18 @@ class Cohort < ApplicationRecord
       cohort.instructor.instructor_cohorts << cohort
       cohort.instructor.save
     end
+
+    def self.search(search)
+    if search
+      @cohort = self.all.select{|cohort| cohort.title.include?(search.titleize)}[0]
+      if @cohort
+        self.where(title: @cohort.title)
+      else
+        @cohort = self.all
+      end
+    else
+      @cohort = self.all
+    end
+    @cohort
+  end
 end

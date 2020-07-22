@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
     include Pundit
 
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -21,7 +22,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_user
-        @user = User.find_by(id: params[:id])
+      @user = User.find_by(id: params[:id])
     end
 
     def error_messages(obj)
@@ -31,7 +32,7 @@ class ApplicationController < ActionController::Base
     end
 
     def user_not_authorized
-        flash[:alert] = "You are not authorized to perform this action."
-        redirect_to(request.referrer || user_path(@user))
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(request.referrer || user_path(@user))
     end
 end

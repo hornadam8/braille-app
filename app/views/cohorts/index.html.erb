@@ -1,6 +1,13 @@
 <center><h2>Here are the currently available Cohorts: </h2>
 <br>
 <br>
+
+<%= form_tag(cohorts_search_path, method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<br>
 <% @cohorts.each do |c| %>
   <% if !@user.cohorts.include?(c) %>
     <h5><%= "#{c.title} with #{c.instructor.name}" %></h5>

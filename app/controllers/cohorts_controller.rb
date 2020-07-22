@@ -3,6 +3,7 @@ class CohortsController < ApplicationController
 
     before_action :check_and_set_current_user
     before_action :set_cohort, only: [:show,:edit,:update,:destroy]
+    before_action :set_cohorts, oonly: [:index,:search]
     before_action :authorize!, only: [:show,:edit,:update,:destroy]
 
 
@@ -41,7 +42,7 @@ class CohortsController < ApplicationController
     end
 
     def index
-      @cohorts = Cohort.all
+
     end
 
     def destroy
@@ -49,10 +50,18 @@ class CohortsController < ApplicationController
       redirect_to user_path(current_user)
     end
 
+    def search
+      @cohort = Cohort.search(params[:q])
+    end
+
     private
 
     def cohort_params
       params.require(:cohort).permit(:title,:password)
+    end
+
+    def set_cohorts
+      @cohorts = Cohort.all
     end
 
     def set_cohort

@@ -1,0 +1,13 @@
+<center>
+  <% if @cohort %>
+    <h5><%= "#{@cohort.title} with #{@cohort.instructor.name}" %></h5>
+    <br>
+    <div class="btn btn-primary" style="padding: 0px">
+      <%= link_to "Join this class", new_cohort_user_cohort_path(@cohort), :class => "btn" %>
+    </div>
+    <br>
+    <br>
+  <%else%>
+      <h4> No Results </h4>
+  <%end%>
+</center>

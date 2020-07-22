@@ -13,9 +13,9 @@ class AssignmentPolicy < ApplicationPolicy
     end
 
     def create?
-        if @user.role.name == "Instructor"
-            true
-        end
+      if @user.role.name == "Instructor"
+        true
+      end
     end
 
     def edit?

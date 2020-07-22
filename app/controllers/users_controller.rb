@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     end
 
     def update
-      @user.update(name: params[:user][:name])
+      @user.update(name: params[:user][:name],role_id: params[:user][:role_id])
       redirect_to user_path(@user)
     end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     end
 
     def instructors
-      @instructors = User.instructor
+      @instructors = User.instructors
     end
 
     private
@@ -58,13 +58,16 @@ class UsersController < ApplicationController
     end
 
     def resolve_layout
-    case action_name
-    when "new", "create"
-      "home"
-    else
-      "application"
+
+      case action_name
+
+      when "new", "create"
+        "home"
+      else
+        "application"
+      end
+
     end
-  end
 
 
 

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get "/users/instructors", to: "users#instructors"
 
+
+  get "/cohorts/search", to: "cohorts#search"
   resources :sessions, only: [:new,:create]
 
   resources :users, only: [:new,:create,:show,:edit,:update,:destroy]
